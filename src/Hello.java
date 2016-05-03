@@ -3,7 +3,12 @@
  * EducationGame project class
  */
 public class Hello {
-    public void SayHello(){
+
+    public static void main(String[] args) {
+        sayHello();
+    }
+
+    private static void sayHello() {
         System.out.println("Hello everybody!");
     }
 }
