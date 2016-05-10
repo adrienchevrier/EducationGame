@@ -2,12 +2,12 @@ package game;
 
 import display.Display;
 import gfx.Assets;
-import gfx.ImageLoader;
-import gfx.SpriteSheet;
+import states.CurrentState;
+import states.GameState;
+import states.State;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
 
 /**
  * Created by adrien on 03/05/16.
@@ -16,18 +16,22 @@ import java.awt.image.BufferedImage;
 public class Game implements Runnable{
 
     //variables
-    private Display display;
+    protected Display display;
     public int width, height;
     public String title;
 
     private boolean running = false;
-    private Thread thread;
+    private Thread gameThread;
 
     private BufferStrategy bs;
     private Graphics g;
 
     //timer
     int x;
+
+    //States
+    protected State gameState;
+
 
 
     //Constructor
@@ -40,12 +44,17 @@ public class Game implements Runnable{
     private void init(){
         display = new Display(title, width, height);
         Assets.init();
+
+        gameState = new GameState();
+        CurrentState.setState(gameState);
     }
 
     //updates the screen
     //
     private void tick(){
         x+=1;
+        if (CurrentState.getState() !=null)
+            CurrentState.getState().tick();
 
     }
 
@@ -73,7 +82,10 @@ public class Game implements Runnable{
         //draw image
         //g.drawImage(testImage, 20,20,null);
 
+        if (CurrentState.getState() !=null)
+            CurrentState.getState().render(g);
         //draw subImage
+
 
         //end of drawing
         bs.show();
@@ -121,14 +133,14 @@ public class Game implements Runnable{
     public synchronized void start(){
         if (running)return;
         running = true;
-        thread = new Thread(this);
-        thread.start();
+        gameThread = new Thread(this);
+        gameThread.start();
     }
 
     public synchronized void stop(){
         if (!running)return;
         try {
-            thread.join();
+            gameThread.join();
         }catch (InterruptedException e){
             e.printStackTrace();
         }

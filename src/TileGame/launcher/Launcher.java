@@ -1,6 +1,5 @@
 package TileGame.launcher;
 
-import display.Display;
 import game.Game;
 
 /**
