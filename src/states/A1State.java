@@ -21,7 +21,7 @@ public class A1State extends GameState{
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(Maze.maze,50,50,null);
+        g.drawImage(Maze.maze,0,0,null);
 
 
     }

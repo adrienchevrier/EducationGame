@@ -1,11 +1,10 @@
 package game;
 
 import display.Display;
+import game.PartA.Theme1.A1;
 import gfx.Assets;
-import states.CurrentState;
-import states.GameState;
-import states.MenuState;
-import states.State;
+import gfx.Maze;
+import states.*;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -33,6 +32,7 @@ public class Game implements Runnable{
     //States
     private State gameState;
     private State menuState;
+    private State A1State;
 
 
 
@@ -46,10 +46,12 @@ public class Game implements Runnable{
     private void init(){
         display = new Display(title, width, height);
         Assets.init();
+        Maze.init();
 
         gameState = new GameState();
         menuState = new MenuState();
-        CurrentState.setState(gameState);
+        A1State = new A1State();
+        CurrentState.setState(A1State);
     }
 
     //updates the screen

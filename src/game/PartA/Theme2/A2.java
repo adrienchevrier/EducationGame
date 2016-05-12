@@ -19,10 +19,5 @@ public class A2 extends Game {
     private void init(){
         display = new Display(title, width, height);
 
-        //TO BE CHANGED
-        Assets.init();
-
-        gameState = new GameState();
-        CurrentState.setState(gameState);
     }
 }
