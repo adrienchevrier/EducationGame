@@ -4,6 +4,7 @@ import display.Display;
 import gfx.Assets;
 import states.CurrentState;
 import states.GameState;
+import states.MenuState;
 import states.State;
 
 import java.awt.*;
@@ -30,7 +31,8 @@ public class Game implements Runnable{
     int x;
 
     //States
-    protected State gameState;
+    private State gameState;
+    private State menuState;
 
 
 
@@ -46,6 +48,7 @@ public class Game implements Runnable{
         Assets.init();
 
         gameState = new GameState();
+        menuState = new MenuState();
         CurrentState.setState(gameState);
     }
 
@@ -70,7 +73,7 @@ public class Game implements Runnable{
         //clear screen
         g.clearRect(0,0,width,height);
 
-        g.drawImage(Assets.door,x,20,null);
+        //g.drawImage(Assets.door,x,20,null);
         //g.drawImage(Assets.genius,50,80,null);
 
         //we draw here

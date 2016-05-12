@@ -1,20 +1,17 @@
 package states;
 
-
-import gfx.Assets;
+import gfx.Maze;
 
 import java.awt.*;
 
 /**
- * Created by adrien on 10/05/16.
+ * Created by adrien on 12/05/16.
  * EducationGame project class
  */
-public class GameState extends State {
+public class MenuState extends GameState{
 
-    public GameState(){
-
+    public MenuState() {
     }
-
 
     @Override
     public void tick() {
@@ -23,7 +20,9 @@ public class GameState extends State {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(Assets.genius,0,0,null);
-    }
 
+
+
+
+    }
 }

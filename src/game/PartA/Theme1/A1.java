@@ -16,11 +16,5 @@ public class A1 extends Game {
         super(title, width, height);
     }
 
-    private void init(){
-        display = new Display(title, width, height);
-        Map.init();
 
-        gameState = new GameState();
-        CurrentState.setState(gameState);
-    }
 }
