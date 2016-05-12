@@ -1,6 +1,8 @@
 package states;
 
 
+import entities.armies.Player;
+import game.Game;
 import gfx.Assets;
 
 import java.awt.*;
@@ -11,19 +13,24 @@ import java.awt.*;
  */
 public class GameState extends State {
 
-    public GameState(){
+    private Player player;
+
+    public GameState(Game game){
+        super(game);
+        player = new Player(game, 100,100);
 
     }
 
 
     @Override
     public void tick() {
+        player.tick();
 
     }
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(Assets.genius,0,0,null);
+        player.render(g);
     }
 
 }

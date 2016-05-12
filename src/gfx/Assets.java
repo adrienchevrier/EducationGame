@@ -11,6 +11,8 @@ public class Assets {
     private static final int width = 100,height = 80;
 
     public static BufferedImage door, entrance, grass, grey,soldier,way,genius;
+
+    //init images to be displayed
     public static void init(){
         SpriteSheet sheet;
         sheet = new SpriteSheet(ImageLoader.loadImage("/textures/table.png"));

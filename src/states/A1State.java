@@ -1,5 +1,6 @@
 package states;
 
+import game.Game;
 import gfx.Maze;
 
 import java.awt.*;
@@ -11,7 +12,8 @@ import java.awt.*;
 public class A1State extends GameState{
 
 
-    public A1State() {
+    public A1State(Game game) {
+        super(game);
     }
 
     @Override
@@ -19,6 +21,8 @@ public class A1State extends GameState{
 
     }
 
+
+    //we just display a maze
     @Override
     public void render(Graphics g) {
         g.drawImage(Maze.maze,0,0,null);

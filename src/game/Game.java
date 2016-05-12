@@ -4,10 +4,12 @@ import display.Display;
 import game.PartA.Theme1.A1;
 import gfx.Assets;
 import gfx.Maze;
+import inputs.KeyManager;
 import states.*;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.security.Key;
 
 /**
  * Created by adrien on 03/05/16.
@@ -34,6 +36,8 @@ public class Game implements Runnable{
     private State menuState;
     private State A1State;
 
+    //input
+    private KeyManager keymanager;
 
 
     //Constructor
@@ -41,22 +45,25 @@ public class Game implements Runnable{
         this.height = height;
         this.width = width;
         this.title = title;
+        keymanager = new KeyManager();
     }
 
     private void init(){
         display = new Display(title, width, height);
+        display.getFrame().addKeyListener(keymanager);
         Assets.init();
         Maze.init();
 
-        gameState = new GameState();
-        menuState = new MenuState();
-        A1State = new A1State();
-        CurrentState.setState(A1State);
+        gameState = new GameState(this);
+        menuState = new MenuState(this);
+        A1State = new A1State(this);
+        CurrentState.setState(gameState);
     }
 
     //updates the screen
-    //
+    //Changes values of variables etc
     private void tick(){
+        keymanager.tick();
         x+=1;
         if (CurrentState.getState() !=null)
             CurrentState.getState().tick();
@@ -126,13 +133,17 @@ public class Game implements Runnable{
 
             //displays frames per second
             if (timer>=1000000000){
-                System.out.println("Ticks and frames "+ticks);
+                //System.out.println("Ticks and frames "+ticks);
                 ticks=0;
                 timer=0;
             }
         }
         stop();
 
+    }
+
+    public KeyManager getKeyManager(){
+        return keymanager;
     }
 
     public synchronized void start(){

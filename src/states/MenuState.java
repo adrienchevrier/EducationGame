@@ -1,5 +1,6 @@
 package states;
 
+import game.Game;
 import gfx.Maze;
 
 import java.awt.*;
@@ -10,7 +11,8 @@ import java.awt.*;
  */
 public class MenuState extends GameState{
 
-    public MenuState() {
+    public MenuState(Game game) {
+        super(game);
     }
 
     @Override
