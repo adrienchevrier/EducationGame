@@ -3,7 +3,6 @@ package states;
 
 import entities.armies.Player;
 import game.Game;
-import gfx.Assets;
 import tiles.Tile;
 import worlds.World;
 
@@ -21,7 +20,7 @@ public class GameState extends State {
     public GameState(Game game){
         super(game);
         player = new Player(game, 100,100);
-        world = new World("res/worlds/world1.txt");
+        world = new World("res/myWorlds/world1.txt");
     }
 
 
