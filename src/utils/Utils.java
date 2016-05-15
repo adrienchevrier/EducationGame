@@ -14,7 +14,10 @@ public class Utils {
     public static String loadFileAsString(String path){
         StringBuilder builder = new StringBuilder();
 
+        //try to load file
         try {
+
+            //put file from path into buffer
             BufferedReader br = new BufferedReader(new FileReader(path));
             String line;
             while ((line = br.readLine())!=null)
