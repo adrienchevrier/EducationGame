@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 /**
  * Created by adrien on 04/05/16.
  * 2Dgame project class
+ *
  * Class to draw a part of a bigger image
  */
 public class SpriteSheet {

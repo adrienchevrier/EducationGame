@@ -17,13 +17,16 @@ public class GameState extends State {
     private Player player;
     private World world;
 
+    //CONSTRUCTOR
     public GameState(Game game){
         super(game);
         player = new Player(game, 100,100);
+        //path to world information
         world = new World("res/myWorlds/world1.txt");
     }
 
 
+    //calls required ticks
     @Override
     public void tick() {
         world.tick();
@@ -31,6 +34,7 @@ public class GameState extends State {
 
     }
 
+    //displays game to the screen
     @Override
     public void render(Graphics g) {
         world.render(g);

@@ -10,6 +10,7 @@ import java.io.IOException;
  */
 public class Utils {
 
+    //method to load a file as string
     public static String loadFileAsString(String path){
         StringBuilder builder = new StringBuilder();
 
@@ -25,6 +26,7 @@ public class Utils {
         return builder.toString();
     }
 
+    //method to change string numbers into int numbers
     public static int parseInt(String number){
         try {
             return Integer.parseInt(number);

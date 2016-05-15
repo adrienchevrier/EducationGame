@@ -5,12 +5,15 @@ import java.awt.*;
 /**
  * Created by adrien on 12/05/16.
  * EducationGame project class
+ * Every object in the game will be an entity
  */
 public abstract class Entity {
 
+    //VARIABLES
     protected float x,y;
     protected int width, height;
 
+    //CONSTRUCTOR
     public Entity(float x, float y, int width, int height) {
         this.x = x;
         this.y = y;
@@ -18,6 +21,7 @@ public abstract class Entity {
         this.height = height;
     }
 
+    //GETTERS AND SETTERS
     public int getHeight() {
         return height;
     }
@@ -50,6 +54,8 @@ public abstract class Entity {
         this.width = width;
     }
 
+
+    //ABSTRACT METHODS
     public abstract void tick();
     public abstract void render(Graphics g);
     }

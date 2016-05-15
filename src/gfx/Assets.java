@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 /**
  * Created by adrien on 04/05/16.
  * 2Dgame project class
+ *
  * Class contains and extracts all images from an array
  */
 public class Assets {
