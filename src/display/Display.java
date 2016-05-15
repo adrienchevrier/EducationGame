@@ -16,6 +16,7 @@ public class Display {
     private String title;
     private int width, height;
 
+    //CONSTRUCTOR
     public Display( String title, int width, int height) {
         this.title = title;
         this.width = width;
@@ -24,14 +25,7 @@ public class Display {
         createDisplay();
     }
 
-    public JFrame getFrame() {
-        return frame;
-    }
-
-    public Canvas getCanvas() {
-        return canvas;
-    }
-
+    //generates the screen to be displayed
     private void createDisplay(){
         frame = new JFrame(title);
         frame.setSize(width,height);
@@ -49,4 +43,15 @@ public class Display {
         frame.add(canvas);
         frame.pack();
     }
+
+    //GETTERS AND SETTERS
+    public JFrame getFrame() {
+        return frame;
+    }
+
+    public Canvas getCanvas() {
+        return canvas;
+    }
+
+
 }

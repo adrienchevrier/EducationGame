@@ -11,11 +11,14 @@ import java.awt.*;
  */
 public class World {
 
+    //VARIABLES
     private int width = 5, height = 5;
     private int spawnX = 0, spawnY = 0;
 
+    //array of tiles
     private int[][] tiles = new int[width][height];
 
+    //CONSTRUCTOR
     public World(String path){
         loadWorld(path);
 
@@ -25,6 +28,7 @@ public class World {
 
     }
 
+    //displays each tile of the array
     public void render(Graphics g){
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
@@ -35,13 +39,16 @@ public class World {
     }
 
 
+    //return type of choosen tile
     public Tile getTile(int x, int y){
         Tile t = Tile.tiles[tiles[x][y]];
+        //if no tile, returns dirt tile
         if (t == null)
             return Tile.dirtTile;
         return t;
     }
 
+    //method puts values into tiles array
     private void loadWorld(String path){
         //String file = Utils.loadFileAsString(path);
         //String[]tokens = file.split("\\s+");

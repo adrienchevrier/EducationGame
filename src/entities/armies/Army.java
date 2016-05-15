@@ -8,11 +8,13 @@ import entities.Entity;
  */
 public abstract class Army extends Entity {
 
+    //FINAL VARIABLES OF ARMIES
     public static final int DEFAULT_HEALTH = 10;
     public static final float DEFAULT_SPEED = 3.0f;
     public static final int DEFAULT_CREATURE_WIDTH = 64;
     public static final int DEFAULT_CREATURE_HEIGHT = 64;
 
+    //armies variables
     protected int health;
     protected float speed;
     protected float xMove;
@@ -27,6 +29,7 @@ public abstract class Army extends Entity {
         yMove = 0;
     }
 
+    //move method
     public void move(){
         x+= xMove;
         y+=yMove;

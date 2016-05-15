@@ -12,11 +12,15 @@ import java.awt.*;
 public class Player extends Army {
     private Game game;
 
+
+    //CONSTRUCTOR
     public Player(Game game, float x, float y) {
         super(x, y, Army.DEFAULT_CREATURE_WIDTH,Army.DEFAULT_CREATURE_HEIGHT);
         this.game = game;
     }
 
+
+    //each tick takes input and moves
     @Override
     public void tick() {
 
@@ -27,6 +31,7 @@ public class Player extends Army {
 
     }
 
+    //method sets shifting of player according to input
     private void getInput(){
         xMove = 0;
         yMove = 0;
@@ -37,6 +42,7 @@ public class Player extends Army {
         if(game.getKeyManager().right)xMove = speed;
     }
 
+    //displays the player
     @Override
     public void render(Graphics g) {
         g.drawImage(Assets.soldier,(int)x,(int)y,width,height, null);
