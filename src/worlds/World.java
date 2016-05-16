@@ -1,5 +1,6 @@
 package worlds;
 
+import game.Game;
 import tiles.Tile;
 import utils.Utils;
 
@@ -12,6 +13,7 @@ import java.awt.*;
 public class World {
 
     //VARIABLES
+    private Game game;
     private int width=5 , height=5;
     private int spawnX=0 , spawnY=0;
 
@@ -19,7 +21,8 @@ public class World {
     private int[][] tiles = new int[width][height];
 
     //CONSTRUCTOR
-    public World(String path){
+    public World(Game game,String path){
+        this.game = game;
         loadWorld(path);
 
     }
@@ -32,7 +35,7 @@ public class World {
     public void render(Graphics g){
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                    getTile(x,y).render(g,x+Tile.TIEHEIGHT,y*Tile.TIEHEIGHT);
+                    getTile(x,y).render(g,x*Tile.TILEWIDTH,y*Tile.TILEHEIGHT);
             }
         }
 

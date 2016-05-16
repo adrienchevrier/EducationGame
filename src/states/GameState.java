@@ -22,7 +22,7 @@ public class GameState extends State {
         super(game);
         player = new Player(game, 100,100);
         //path to world information
-        world = new World("res/myWorlds/world1.txt");
+        world = new World(game,"res/myWorlds/world1.txt");
     }
 
 

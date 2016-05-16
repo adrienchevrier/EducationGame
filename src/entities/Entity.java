@@ -1,5 +1,7 @@
 package entities;
 
+import game.Game;
+
 import java.awt.*;
 
 /**
@@ -10,15 +12,17 @@ import java.awt.*;
 public abstract class Entity {
 
     //VARIABLES
+    protected Game game;
     protected float x,y;
     protected int width, height;
 
     //CONSTRUCTOR
-    public Entity(float x, float y, int width, int height) {
+    public Entity(Game game, float x, float y, int width, int height) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+        this.game = game;
     }
 
     //GETTERS AND SETTERS

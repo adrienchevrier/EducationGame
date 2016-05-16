@@ -1,6 +1,7 @@
 package entities.armies;
 
 import entities.Entity;
+import game.Game;
 
 /**
  * Created by adrien on 12/05/16.
@@ -21,8 +22,8 @@ public abstract class Army extends Entity {
     protected float yMove;
 
     //CONSTRUCTOR
-    public Army(float x, float y, int width, int height) {
-        super(x, y,width,height);
+    public Army(Game game,float x, float y, int width, int height) {
+        super(game,x, y,width,height);
         health = DEFAULT_HEALTH;
         speed = DEFAULT_SPEED;
         xMove = 0;

@@ -10,13 +10,11 @@ import java.awt.*;
  * EducationGame project class
  */
 public class Player extends Army {
-    private Game game;
 
 
     //CONSTRUCTOR
     public Player(Game game, float x, float y) {
-        super(x, y, Army.DEFAULT_CREATURE_WIDTH,Army.DEFAULT_CREATURE_HEIGHT);
-        this.game = game;
+        super(game,x, y, Army.DEFAULT_CREATURE_WIDTH,Army.DEFAULT_CREATURE_HEIGHT);
     }
 
 
