@@ -14,7 +14,7 @@ public class World {
 
     //VARIABLES
     private Game game;
-    private int width=5 , height=5;
+    private int width=10 , height=10;
     private int spawnX=0 , spawnY=0;
 
     //array of tiles
