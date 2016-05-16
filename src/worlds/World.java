@@ -64,7 +64,7 @@ public class World {
             }
         }
         for (int i = 0; i < height; i++) {
-            tiles [width][height] = 2;
+            tiles [4][4] = 2;
         }
         tiles[3][4] = 3;
         tiles[1][4] = 1;
