@@ -1,28 +1,30 @@
 package entities;
 
-import game.Game;
+import handler.Handler;
 
 import java.awt.*;
 
 /**
  * Created by adrien on 12/05/16.
  * EducationGame project class
- * Every object in the game will be an entity
+ * Every object in the handler will be an entity
  */
 public abstract class Entity {
 
     //VARIABLES
-    protected Game game;
+    protected Handler handler;
     protected float x,y;
     protected int width, height;
+    protected Rectangle bounds;
 
     //CONSTRUCTOR
-    public Entity(Game game, float x, float y, int width, int height) {
+    public Entity(Handler handler, float x, float y, int width, int height) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
-        this.game = game;
+        this.handler = handler;
+        bounds = new Rectangle(0,0,width,height);
     }
 
     //GETTERS AND SETTERS

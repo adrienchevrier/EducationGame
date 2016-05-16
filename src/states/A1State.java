@@ -1,7 +1,7 @@
 package states;
 
-import game.Game;
 import gfx.Maze;
+import handler.Handler;
 
 import java.awt.*;
 
@@ -12,8 +12,8 @@ import java.awt.*;
 public class A1State extends GameState{
 
 
-    public A1State(Game game) {
-        super(game);
+    public A1State(Handler handler) {
+        super(handler);
     }
 
     @Override

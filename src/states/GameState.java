@@ -2,7 +2,6 @@ package states;
 
 
 import entities.armies.Player;
-import game.Game;
 import tiles.Tile;
 import worlds.World;
 
@@ -18,11 +17,12 @@ public class GameState extends State {
     private World world;
 
     //CONSTRUCTOR
-    public GameState(Game game){
-        super(game);
-        player = new Player(game, 100,100);
+    public GameState(handler.Handler handler){
+        super(handler);
+        player = new Player(handler, 100,100);
         //path to world information
-        world = new World(game,"res/myWorlds/world1.txt");
+        world = new World(handler,"res/myWorlds/world1.txt");
+        handler.setWorld(world);
     }
 
 
@@ -34,7 +34,7 @@ public class GameState extends State {
 
     }
 
-    //displays game to the screen
+    //displays handler to the screen
     @Override
     public void render(Graphics g) {
         world.render(g);

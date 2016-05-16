@@ -1,6 +1,5 @@
 package states;
 
-import game.Game;
 
 import java.awt.*;
 
@@ -10,10 +9,10 @@ import java.awt.*;
  */
 public abstract class State {
 
-    protected Game game;
+    protected handler.Handler handler;
 
-    public State(Game game) {
-        this.game = game;
+    public State(handler.Handler handler) {
+        this.handler = handler;
     }
 
     public abstract void tick();

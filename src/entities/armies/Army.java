@@ -1,7 +1,8 @@
 package entities.armies;
 
 import entities.Entity;
-import game.Game;
+import handler.Handler;
+import tiles.Tile;
 
 /**
  * Created by adrien on 12/05/16.
@@ -22,8 +23,8 @@ public abstract class Army extends Entity {
     protected float yMove;
 
     //CONSTRUCTOR
-    public Army(Game game,float x, float y, int width, int height) {
-        super(game,x, y,width,height);
+    public Army(Handler handler, float x, float y, int width, int height) {
+        super(handler,x, y,width,height);
         health = DEFAULT_HEALTH;
         speed = DEFAULT_SPEED;
         xMove = 0;
@@ -32,8 +33,55 @@ public abstract class Army extends Entity {
 
     //move method
     public void move(){
-        x+= xMove;
-        y+=yMove;
+        moveX();
+        moveY();
+
+    }
+
+    public void moveX(){
+
+        if (xMove>0){//moving right
+
+            int tx = (int)(x+xMove+bounds.x+bounds.width)/ Tile.TILEWIDTH;
+            //avoiding collisions, if test false, we move
+            if (!collisionWithTile(tx,(int)(y+bounds.y)/Tile.TILEHEIGHT)&&
+                    !collisionWithTile(tx,(int)(y+bounds.y+bounds.height)/Tile.TILEHEIGHT)) {
+                x+= xMove;
+            }
+        }else if (xMove<0){//moving left
+            int tx = (int)(x+xMove+bounds.x)/ Tile.TILEWIDTH;
+            //avoiding collisions, if test false, we move
+            if (!collisionWithTile(tx,(int)(y+bounds.y)/Tile.TILEHEIGHT)&&
+                    !collisionWithTile(tx,(int)(y+bounds.y+bounds.height)/Tile.TILEHEIGHT)) {
+                x+= xMove;
+            }
+        }
+
+    }
+
+    public void moveY(){
+        if (yMove<0){//moving up
+            int ty = (int)(y+yMove+bounds.y)/Tile.TILEHEIGHT;
+            //avoiding collisions, if test false, we move
+            if (!collisionWithTile((int)((x+bounds.x)/Tile.TILEWIDTH),ty) &&
+                    !collisionWithTile((int)(x+bounds.x+bounds.width),ty)){
+                y+=yMove;
+            }
+
+        }else if (yMove>0) {//moving down
+            int ty = (int) (y + yMove + bounds.y+bounds.height) / Tile.TILEHEIGHT;
+            //avoiding collisions, if test false, we move
+            if (!collisionWithTile((int) ((x + bounds.x) / Tile.TILEWIDTH), ty) &&
+                    !collisionWithTile((int) (x + bounds.x + bounds.width), ty)) {
+                y += yMove;
+            }
+        }
+
+    }
+
+    protected boolean collisionWithTile(int x, int y){
+        //returns true if target tile is solid
+        return handler.getWorld().getTile(x,y).isSolid();
     }
 
     //GETTERS &SETTERS

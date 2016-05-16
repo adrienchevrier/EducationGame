@@ -17,7 +17,7 @@ public class A2 extends Game {
 
 
     private void init(){
-        display = new Display(title, width, height);
+        //display = new Display(title, width, height);
 
     }
 }

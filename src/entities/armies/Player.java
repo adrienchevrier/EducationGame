@@ -2,6 +2,7 @@ package entities.armies;
 
 import game.Game;
 import gfx.Assets;
+import handler.Handler;
 
 import java.awt.*;
 
@@ -13,8 +14,12 @@ public class Player extends Army {
 
 
     //CONSTRUCTOR
-    public Player(Game game, float x, float y) {
-        super(game,x, y, Army.DEFAULT_CREATURE_WIDTH,Army.DEFAULT_CREATURE_HEIGHT);
+    public Player(Handler handler, float x, float y) {
+        super(handler,x, y, Army.DEFAULT_CREATURE_WIDTH,Army.DEFAULT_CREATURE_HEIGHT);
+        bounds.x = width/4;
+        bounds.y = height/2;
+        bounds.width = width/2;
+        bounds.height = height/2;
     }
 
 
@@ -34,15 +39,18 @@ public class Player extends Army {
         xMove = 0;
         yMove = 0;
 
-        if(game.getKeyManager().up)yMove = -speed;
-        if(game.getKeyManager().down)yMove = speed;
-        if(game.getKeyManager().left)xMove = -speed;
-        if(game.getKeyManager().right)xMove = speed;
+        if(handler.getKeymanager().up)yMove = -speed;
+        if(handler.getKeymanager().down)yMove = speed;
+        if(handler.getKeymanager().left)xMove = -speed;
+        if(handler.getKeymanager().right)xMove = speed;
     }
 
     //displays the player
     @Override
     public void render(Graphics g) {
         g.drawImage(Assets.soldier,(int)x,(int)y,width,height, null);
+
+        g.setColor(Color.red);
+        g.fillRect((int)(x+bounds.x),(int)y+bounds.y,bounds.width,bounds.height);
     }
 }

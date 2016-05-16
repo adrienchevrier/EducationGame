@@ -1,7 +1,7 @@
 package states;
 
-import game.Game;
-import gfx.Maze;
+
+import handler.Handler;
 
 import java.awt.*;
 
@@ -9,10 +9,10 @@ import java.awt.*;
  * Created by adrien on 12/05/16.
  * EducationGame project class
  */
-public class MenuState extends GameState{
+public class MenuState extends State{
 
-    public MenuState(Game game) {
-        super(game);
+    public MenuState(Handler handler) {
+        super(handler);
     }
 
     @Override

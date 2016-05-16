@@ -5,6 +5,7 @@ import tiles.Tile;
 import utils.Utils;
 
 import java.awt.*;
+import java.util.logging.Handler;
 
 /**
  * Created by adrien on 12/05/16.
@@ -13,7 +14,7 @@ import java.awt.*;
 public class World {
 
     //VARIABLES
-    private Game game;
+    private handler.Handler handler;
     private int width=10 , height=10;
     private int spawnX=0 , spawnY=0;
 
@@ -21,8 +22,8 @@ public class World {
     private int[][] tiles = new int[width][height];
 
     //CONSTRUCTOR
-    public World(Game game,String path){
-        this.game = game;
+    public World(handler.Handler handler, String path){
+        this.handler = handler;
         loadWorld(path);
 
     }
@@ -44,6 +45,9 @@ public class World {
 
     //return type of choosen tile
     public Tile getTile(int x, int y){
+        if (x<0 || y<0 || x>= width || y>= height)
+            return Tile.grassTile;
+
         Tile t = Tile.tiles[tiles[x][y]];
         //if no tile, returns dirt tile
         if (t == null)

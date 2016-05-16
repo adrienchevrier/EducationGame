@@ -1,7 +1,6 @@
 package game;
 
 import display.Display;
-import game.PartA.Theme1.A1;
 import gfx.Assets;
 import gfx.Maze;
 import inputs.KeyManager;
@@ -9,7 +8,7 @@ import states.*;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.security.Key;
+import java.util.logging.Handler;
 
 /**
  * Created by adrien on 03/05/16.
@@ -19,7 +18,7 @@ public class Game implements Runnable{
 
     //variables
     protected Display display;
-    public int width, height;
+    private int width, height;
     public String title;
 
     private boolean running = false;
@@ -27,6 +26,9 @@ public class Game implements Runnable{
 
     private BufferStrategy bs;
     private Graphics g;
+
+    //handler
+    private handler.Handler handler;
 
     //timer
     int x;
@@ -54,9 +56,12 @@ public class Game implements Runnable{
         Assets.init();
         Maze.init();
 
-        gameState = new GameState(this);
-        menuState = new MenuState(this);
-        A1State = new A1State(this);
+        handler = new handler.Handler(this);
+
+
+        gameState = new GameState(handler);
+        menuState = new MenuState(handler);
+        A1State = new A1State(handler);
         CurrentState.setState(gameState);
     }
 
@@ -160,5 +165,13 @@ public class Game implements Runnable{
         }catch (InterruptedException e){
             e.printStackTrace();
         }
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 }
