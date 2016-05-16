@@ -54,7 +54,7 @@ public class Game implements Runnable{
         display = new Display(title, width, height);
         display.getFrame().addKeyListener(keymanager);
         Assets.init();
-        Maze.init();
+        //Maze.init();
 
         handler = new handler.Handler(this);
 
