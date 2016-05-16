@@ -15,7 +15,7 @@ public class World {
 
     //VARIABLES
     private handler.Handler handler;
-    private int width=10 , height=10;
+    private int width=11 , height=10;
     private int spawnX=0 , spawnY=0;
 
     //array of tiles
