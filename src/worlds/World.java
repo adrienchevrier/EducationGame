@@ -7,6 +7,10 @@ import utils.Utils;
 import java.awt.*;
 import java.util.logging.Handler;
 
+import entities.EntityManager;
+import entities.armies.Player;
+import entities.statics.Enemy;
+
 /**
  * Created by adrien on 12/05/16.
  * EducationGame project class
@@ -16,7 +20,9 @@ public class World {
     //VARIABLES
     private handler.Handler handler;
     private int width=11 , height=10;
-    private int spawnX=0 , spawnY=0;
+    private int spawnX=60 , spawnY=60;
+    
+    private EntityManager entityManager;
 
     //array of tiles
     private int[][] tiles = new int[width][height];
@@ -24,12 +30,28 @@ public class World {
     //CONSTRUCTOR
     public World(handler.Handler handler, String path){
         this.handler = handler;
+        entityManager=new EntityManager(handler, new Player(handler, 0, 0));
+        //create enemy here
+        entityManager.addEntity(new Enemy(handler, 200, 400, 10));
+        entityManager.addEntity(new Enemy(handler, 70, 400, 5));
+        entityManager.addEntity(new Enemy(handler, 500, 400, 6));
+        entityManager.addEntity(new Enemy(handler, 500, 500, 6));
+        entityManager.addEntity(new Enemy(handler, 500, 300, 6));
+        
+        
+        
+        
         loadWorld(path);
+        entityManager.getPlayer().setX(spawnX);
+        entityManager.getPlayer().setY(spawnY);
 
     }
 
-    public void tick(){
 
+
+
+	public void tick(){
+    	entityManager.tick();
     }
 
     //displays each tile of the array
@@ -39,11 +61,14 @@ public class World {
                     getTile(x,y).render(g,x*Tile.TILEWIDTH,y*Tile.TILEHEIGHT);
             }
         }
+        
+        //Entities
+        entityManager.render(g);
 
     }
 
 
-    //return type of choosen tile
+    //return type of chosen tile
     public Tile getTile(int x, int y){
         if (x<0 || y<0 || x>= width || y>= height)
             return Tile.grassTile;
@@ -54,6 +79,10 @@ public class World {
             return Tile.dirtTile;
         return t;
     }
+    
+    public EntityManager getEntityManager() {
+		return entityManager;
+	}
 
     //method puts values into tiles array
     private void loadWorld(String path){

@@ -4,6 +4,7 @@ import display.Display;
 import gfx.Assets;
 import gfx.Maze;
 import inputs.KeyManager;
+import inputs.MouseManager;
 import states.*;
 
 import java.awt.*;
@@ -34,12 +35,13 @@ public class Game implements Runnable{
     int x;
 
     //States
-    private State gameState;
-    private State menuState;
+    public State gameState;
+    public State menuState;
     private State A1State;
 
     //input
     private KeyManager keymanager;
+    private MouseManager mousemanager;
 
 
     //Constructor
@@ -48,17 +50,24 @@ public class Game implements Runnable{
         this.width = width;
         this.title = title;
         keymanager = new KeyManager();
+        mousemanager=new MouseManager();
+        
     }
 
     private void init(){
         display = new Display(title, width, height);
         display.getFrame().addKeyListener(keymanager);
+        display.getFrame().addMouseListener(mousemanager);
+        display.getFrame().addMouseMotionListener(mousemanager);
+        display.getCanvas().addMouseListener(mousemanager);
+        display.getCanvas().addMouseMotionListener(mousemanager);
+        
         Assets.init();
         //Maze.init();
 
         handler = new handler.Handler(this);
-
-
+        
+        
         gameState = new GameState(handler);
         menuState = new MenuState(handler);
         A1State = new A1State(handler);
@@ -149,6 +158,10 @@ public class Game implements Runnable{
 
     public KeyManager getKeyManager(){
         return keymanager;
+    }
+    
+    public MouseManager getMouseManager(){
+    	return mousemanager;
     }
 
     public synchronized void start(){

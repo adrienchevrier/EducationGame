@@ -1,10 +1,11 @@
 package entities.armies;
 
-import game.Game;
 import gfx.Assets;
 import handler.Handler;
 
 import java.awt.*;
+
+import entities.Entity;
 
 /**
  * Created by adrien on 12/05/16.
@@ -20,6 +21,7 @@ public class Player extends Army {
         bounds.y = height/2;
         bounds.width = width/2;
         bounds.height = height/2;
+        this.health=100;
     }
 
 
@@ -29,9 +31,47 @@ public class Player extends Army {
 
         getInput();
         move();
-
-
-
+        //Attack
+        checkAttack();
+    }
+    
+    private void checkAttack(){
+    	Rectangle cb= this.getCollisionBounds(0,0);
+    	Rectangle ar= new Rectangle();
+    	int arSize=20;
+    	ar.width=arSize;
+    	ar.height=arSize;
+    	
+    	if(handler.getKeymanager().up){
+    		ar.x=cb.x+cb.width/2-arSize/2;
+    		ar.y=cb.y-arSize;
+    	}else if(handler.getKeymanager().down){
+    		ar.x=cb.x+cb.width/2-arSize/2;
+    		ar.y=cb.y+cb.height;
+    	}else if(handler.getKeymanager().right){
+    		ar.x=cb.x-arSize;
+    		ar.y=cb.y+cb.height/2-arSize/2;
+    	}else if(handler.getKeymanager().left){
+    		ar.x=cb.x+cb.width;
+    		ar.y=cb.y+cb.height/2-arSize/2;
+    	}else{
+    		return;
+    	}
+    	
+    	for(Entity e: handler.getWorld().getEntityManager().getEntities()){
+    		if(e.equals(this)){
+    			continue; //if this entity is Player, then continue
+    		}
+    		if(this.getCollisionBounds(0,0).intersects(ar)){
+    			e.hurt(1);
+    			return;
+    		}
+    		
+    	}
+    	
+    	
+    	
+    	
     }
 
     //method sets shifting of player according to input
@@ -53,4 +93,11 @@ public class Player extends Army {
         g.setColor(Color.red);
         g.fillRect((int)(x+bounds.x),(int)y+bounds.y,bounds.width,bounds.height);
     }
+
+
+	@Override
+	public void die() {
+		System.out.println("GAME OVER YOU DIED!");
+		
+	}
 }

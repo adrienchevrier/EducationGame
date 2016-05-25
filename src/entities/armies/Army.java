@@ -11,13 +11,13 @@ import tiles.Tile;
 public abstract class Army extends Entity {
 
     //FINAL VARIABLES OF ARMIES
-    public static final int DEFAULT_HEALTH = 10;
+ 
     public static final float DEFAULT_SPEED = 3.0f;
     public static final int DEFAULT_CREATURE_WIDTH = 64;
     public static final int DEFAULT_CREATURE_HEIGHT = 64;
 
     //armies variables
-    protected int health;
+
     protected float speed;
     protected float xMove;
     protected float yMove;
@@ -25,7 +25,7 @@ public abstract class Army extends Entity {
     //CONSTRUCTOR
     public Army(Handler handler, float x, float y, int width, int height) {
         super(handler,x, y,width,height);
-        health = DEFAULT_HEALTH;
+       
         speed = DEFAULT_SPEED;
         xMove = 0;
         yMove = 0;
@@ -33,9 +33,15 @@ public abstract class Army extends Entity {
 
     //move method
     public void move(){
-        moveX();
-        moveY();
-
+    	
+    	
+    	if(!this.checkEntityCollisions(xMove, 0f)){
+    		moveX(); 
+    	}
+    	
+    	if(!this.checkEntityCollisions(0f, yMove)){
+    		moveY();
+    	}
     }
 
     public void moveX(){
@@ -69,7 +75,7 @@ public abstract class Army extends Entity {
             int ty = (int)(y+yMove+bounds.y)/Tile.TILEHEIGHT;
             //avoiding collisions, if test false, we move
             if (!collisionWithTile((int)((x+bounds.x)/Tile.TILEWIDTH),ty) &&
-                    !collisionWithTile((int)(x+bounds.x+bounds.width),ty)){
+                    !collisionWithTile((int)(x+bounds.x+bounds.width)/Tile.TILEWIDTH,ty)){
                 y+=yMove;
             }else {
                 y = ty*Tile.TILEHEIGHT + Tile.TILEHEIGHT-bounds.y;
@@ -79,7 +85,7 @@ public abstract class Army extends Entity {
             int ty = (int) (y + yMove + bounds.y+bounds.height) / Tile.TILEHEIGHT;
             //avoiding collisions, if test false, we move
             if (!collisionWithTile((int) ((x + bounds.x) / Tile.TILEWIDTH), ty) &&
-                    !collisionWithTile((int) (x + bounds.x + bounds.width), ty)) {
+                    !collisionWithTile((int) (x + bounds.x + bounds.width)/Tile.TILEWIDTH, ty)) {
                 y += yMove;
             }
             else {
@@ -117,14 +123,6 @@ public abstract class Army extends Entity {
 
     public void setSpeed(float speed) {
         this.speed = speed;
-    }
-
-    public int getHealth() {
-        return health;
-    }
-
-    public void setHealth(int health) {
-        this.health = health;
     }
 
 
