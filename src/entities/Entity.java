@@ -18,7 +18,7 @@ public abstract class Entity {
     protected Handler handler;
     protected float x,y;
     protected int width, height;
-    protected boolean active=true; //if this is false, entity manager removes entity from arraylist
+    public boolean alive=true; //if this is false, entity manager removes entity from arraylist
     protected Rectangle bounds;
     
     //ABSTRACT METHODS
@@ -27,23 +27,24 @@ public abstract class Entity {
     
     public abstract void die();
     
-    public void hurt(int amt){
-    	health-=amt;
-    	if(health<=0){
-    		active=false;
-    		die();
-    	}
-    }
-
+	public void hurt(int amt){
+		health -= amt;
+		if(health <= 0){
+			alive=false;
+			die();
+		}
+	}
 
 	//CONSTRUCTOR
     public Entity(Handler handler, float x, float y, int width, int height) {
+    	
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.handler = handler;
         bounds = new Rectangle(0,0,width,height);
+        
     }
     
 	public boolean checkEntityCollisions(float xOffset, float yOffset){
@@ -70,15 +71,9 @@ public abstract class Entity {
 		this.health = health;
 	}
 	
-    public boolean isActive() {
-		return active;
-	}
 
-	public void setActive(boolean active) {
-		this.active = active;
-	}
-    
-    public int getHeight() {
+	
+	public int getHeight() {
         return height;
     }
 
@@ -109,6 +104,14 @@ public abstract class Entity {
     public void setWidth(int width) {
         this.width = width;
     }
+    
+	public boolean isAlive() {
+		return alive;
+	}
+
+	public void setAlive(boolean alive) {
+		this.alive = alive;
+	}
 }
 
 

@@ -14,6 +14,7 @@ public class KeyManager implements KeyListener{
     //VARIABLES
     private boolean[] keys;
     public boolean up,down,left,right;
+    public boolean aUp,aDown,aLeft,aRight;
 
     //CONSTRUCTOR
     public KeyManager() {
@@ -22,10 +23,15 @@ public class KeyManager implements KeyListener{
 
     //tick method reads inputs when called
     public void tick(){
-        up = keys[KeyEvent.VK_UP];
-        down = keys[KeyEvent.VK_DOWN];
-        left = keys[KeyEvent.VK_LEFT];
-        right = keys[KeyEvent.VK_RIGHT];
+        up = keys[KeyEvent.VK_W];
+        down = keys[KeyEvent.VK_S];
+        left = keys[KeyEvent.VK_A];
+        right = keys[KeyEvent.VK_D];
+        
+        aUp = keys[KeyEvent.VK_UP];
+        aDown = keys[KeyEvent.VK_DOWN];
+        aLeft = keys[KeyEvent.VK_LEFT];
+        aRight = keys[KeyEvent.VK_RIGHT];
     }
 
     @Override

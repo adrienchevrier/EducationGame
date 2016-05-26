@@ -34,9 +34,9 @@ public class World {
         //create enemy here
         entityManager.addEntity(new Enemy(handler, 200, 400, 10));
         entityManager.addEntity(new Enemy(handler, 70, 400, 5));
-        entityManager.addEntity(new Enemy(handler, 500, 400, 6));
-        entityManager.addEntity(new Enemy(handler, 500, 500, 6));
-        entityManager.addEntity(new Enemy(handler, 500, 300, 6));
+        entityManager.addEntity(new Enemy(handler, 500, 400, 8));
+        entityManager.addEntity(new Enemy(handler, 500, 500, 3));
+        entityManager.addEntity(new Enemy(handler, 500, 300, 9));
         
         
         

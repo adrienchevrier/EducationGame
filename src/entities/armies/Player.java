@@ -12,7 +12,7 @@ import entities.Entity;
  * EducationGame project class
  */
 public class Player extends Army {
-
+	private long lastAttackTimer, attackCooldown=100, attackTimer=attackCooldown;
 
     //CONSTRUCTOR
     public Player(Handler handler, float x, float y) {
@@ -36,40 +36,52 @@ public class Player extends Army {
     }
     
     private void checkAttack(){
-    	Rectangle cb= this.getCollisionBounds(0,0);
-    	Rectangle ar= new Rectangle();
-    	int arSize=20;
-    	ar.width=arSize;
-    	ar.height=arSize;
-    	
-    	if(handler.getKeymanager().up){
-    		ar.x=cb.x+cb.width/2-arSize/2;
-    		ar.y=cb.y-arSize;
-    	}else if(handler.getKeymanager().down){
-    		ar.x=cb.x+cb.width/2-arSize/2;
-    		ar.y=cb.y+cb.height;
-    	}else if(handler.getKeymanager().right){
-    		ar.x=cb.x-arSize;
-    		ar.y=cb.y+cb.height/2-arSize/2;
-    	}else if(handler.getKeymanager().left){
-    		ar.x=cb.x+cb.width;
-    		ar.y=cb.y+cb.height/2-arSize/2;
-    	}else{
+    	attackTimer+=System.currentTimeMillis()-lastAttackTimer;
+    	lastAttackTimer=System.currentTimeMillis();
+    	if(attackTimer<attackCooldown){
     		return;
     	}
     	
+    	
+    	Rectangle cb= this.getCollisionBounds(0,0);
+    	Rectangle ar= new Rectangle();
+    	int arSize=50;
+    	ar.width=arSize;
+    	ar.height=arSize;
+    	
+    	if(handler.getKeymanager().aUp){
+    		ar.x=cb.x+cb.width/2-arSize/2;
+    		ar.y=cb.y-arSize;
+    		
+    	}else if(handler.getKeymanager().aDown){
+    		ar.x=cb.x+cb.width/2-arSize/2;
+    		ar.y=cb.y+cb.height;
+    		
+    	}else if(handler.getKeymanager().aLeft){
+    		ar.x=cb.x-arSize;
+    		ar.y=cb.y+cb.height/2-arSize/2;
+    		
+    	}else if(handler.getKeymanager().aRight){
+    		ar.x=cb.x+cb.width;
+    		ar.y=cb.y+cb.height/2-arSize/2;
+    		
+    	}else{
+    		return;
+    	}
+    	attackTimer=0;
+    	
     	for(Entity e: handler.getWorld().getEntityManager().getEntities()){
-    		if(e.equals(this)){
+    		if(e instanceof Player){
     			continue; //if this entity is Player, then continue
     		}
-    		if(this.getCollisionBounds(0,0).intersects(ar)){
+    		
+    		if(e.getCollisionBounds(0,0).intersects(ar)){
+    			System.out.println("attack"+e.getHealth());
     			e.hurt(1);
     			return;
     		}
     		
     	}
-    	
-    	
     	
     	
     }

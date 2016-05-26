@@ -1,8 +1,7 @@
 package states;
 
 
-import entities.armies.Player;
-import entities.statics.Enemy;
+
 import tiles.Tile;
 import worlds.World;
 
