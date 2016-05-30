@@ -9,7 +9,9 @@ import java.util.logging.Handler;
 
 import entities.EntityManager;
 import entities.armies.Player;
+import entities.statics.Ally;
 import entities.statics.Enemy;
+import entities.statics.Gate;
 
 /**
  * Created by adrien on 12/05/16.
@@ -37,6 +39,12 @@ public class World {
         entityManager.addEntity(new Enemy(handler, 500, 400, 8));
         entityManager.addEntity(new Enemy(handler, 500, 500, 3));
         entityManager.addEntity(new Enemy(handler, 500, 300, 9));
+        
+        entityManager.addEntity(new Ally(handler, 300, 400, 8));
+        entityManager.addEntity(new Ally(handler, 600, 500, 3));
+        entityManager.addEntity(new Ally(handler, 100, 300, 9));
+        
+        entityManager.addEntity(new Gate(handler, 500, 100, 1, 9));
         
         
         

@@ -6,6 +6,9 @@ import handler.Handler;
 import java.awt.*;
 
 import entities.Entity;
+import entities.statics.Ally;
+import entities.statics.Enemy;
+import entities.statics.Gate;
 
 /**
  * Created by adrien on 12/05/16.
@@ -21,7 +24,7 @@ public class Player extends Army {
         bounds.y = height/2;
         bounds.width = width/2;
         bounds.height = height/2;
-        this.health=100;
+        this.health=10;
     }
 
 
@@ -76,8 +79,18 @@ public class Player extends Army {
     		}
     		
     		if(e.getCollisionBounds(0,0).intersects(ar)){
-    			System.out.println("attack"+e.getHealth());
-    			e.hurt(1);
+    			if (e instanceof Enemy){
+    				e.hurt(1);
+    				this.health-=1;
+    				System.out.println("Player's health "+this.health);
+    			}
+    			else if(e instanceof Ally){
+    				e.hurt(1);
+    				this.health+=1;
+    				System.out.println("Player's health "+this.health);
+    			}else if(e instanceof Gate){
+    				((Gate) e).checkCondition(this.health);
+    			}
     			return;
     		}
     		
