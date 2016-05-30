@@ -1,12 +1,9 @@
 package worlds;
 
-import game.Game;
 import tiles.Tile;
 import utils.Utils;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.logging.Handler;
 
 import entities.gameB.CommandStack;
 
@@ -14,28 +11,24 @@ import entities.gameB.CommandStack;
  * Created by adrien on 12/05/16.
  * EducationGame project class
  */
-public class WorldB extends World{
+public class WorldB extends World {
 
-    //VARIABLES
-    private handler.Handler handler;
-    private int width=11 , height=10;
-    private int spawnX=0 , spawnY=0;
+
     private CommandStack commandStack = new CommandStack();
 
-    //array of tiles
-    private int[][] tiles = new int[width][height];
 
     //CONSTRUCTOR
     public WorldB(handler.Handler handler, String path){
-    	super(handler, path);
+
         this.handler = handler;
-        loadWorld(path);
+        super.loadWorld(path);
     }
 
 	private int locationX = 1;
 	private int locationY = 1;
 	private int direction = 0;
 
+	@Override
     public void tick(){
     	if(commandStack.getCommandStack().isEmpty()) {
 	    	if(direction == 0) {
@@ -109,6 +102,7 @@ public class WorldB extends World{
     }
 
     //displays each tile of the array
+	@Override
     public void render(Graphics g){
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
@@ -131,15 +125,5 @@ public class WorldB extends World{
         return t;
     }
 
-    //method puts values into tiles array
-    private void loadWorld(String path){
-        String file = Utils.loadFileAsString(path);
-        String[]tokens = file.split("\\s+");
 
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                tiles[x][y] = Utils.parseInt(tokens[(x+y*width)]);
-            }
-        }
-    }
 }

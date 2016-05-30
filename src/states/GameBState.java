@@ -2,8 +2,6 @@ package states;
 
 
 
-import tiles.Tile;
-import worlds.World;
 import worlds.WorldB;
 
 import java.awt.*;

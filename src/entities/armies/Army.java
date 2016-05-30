@@ -2,7 +2,9 @@ package entities.armies;
 
 import entities.Entity;
 import handler.Handler;
+
 import tiles.Tile;
+import worlds.WorldA;
 
 /**
  * Created by adrien on 12/05/16.
@@ -30,6 +32,10 @@ public abstract class Army extends Entity {
         xMove = 0;
         yMove = 0;
     }
+
+
+    //HEALTH DISPLAYING
+
 
     //move method
     public void move(){
@@ -97,7 +103,7 @@ public abstract class Army extends Entity {
 
     protected boolean collisionWithTile(int x, int y){
         //returns true if target tile is solid
-        return handler.getWorld().getTile(x,y).isSolid();
+        return (handler.getWorld()).getTile(x,y).isSolid();
     }
 
     //GETTERS &SETTERS

@@ -6,8 +6,9 @@ import java.awt.Graphics;
 import gfx.Assets;
 import handler.Handler;
 import tiles.Tile;
+import utils.intefaces.healthDisplaying;
 
-public class Ally extends StaticEntity{
+public class Ally extends StaticEntity implements healthDisplaying {
 
 	
 
@@ -31,8 +32,9 @@ public class Ally extends StaticEntity{
 	public void render(Graphics g) {
 		g.drawImage(Assets.soldier, (int) x, (int) y, width, height, null);
 		g.setColor(Color.GREEN);
-        
+
         g.fillRect((int)(x+bounds.x),(int)y+bounds.y,bounds.width,bounds.height);
+		displayHealth(g);
 		
 	}
 	
@@ -41,6 +43,14 @@ public class Ally extends StaticEntity{
 		System.out.println(alive);
 		//can spawn items player can collect
 	}
-	
 
+
+	@Override
+	public void displayHealth(Graphics g) {
+
+		g.setColor(Color.black);
+		g.drawRect((int)x,(int)y-(int)(width/2.5),width,height/4);
+		g.setColor(Color.GREEN);
+		g.fillRect((int)x,(int)y-(int)(width/2.5),width*health/MAX_HEALTH,height/4);
+	}
 }

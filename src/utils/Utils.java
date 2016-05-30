@@ -1,5 +1,6 @@
 package utils;
 
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -37,5 +38,9 @@ public class Utils {
             e.printStackTrace();
             return 0;
         }
+    }
+
+    public void DisplayHealth(Graphics g){
+
     }
 }

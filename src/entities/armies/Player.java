@@ -9,12 +9,14 @@ import entities.Entity;
 import entities.statics.Ally;
 import entities.statics.Enemy;
 import entities.statics.Gate;
+import utils.intefaces.healthDisplaying;
+import worlds.WorldA;
 
 /**
  * Created by adrien on 12/05/16.
  * EducationGame project class
  */
-public class Player extends Army {
+public class Player extends Army implements healthDisplaying {
 	private long lastAttackTimer, attackCooldown=100, attackTimer=attackCooldown;
 
     //CONSTRUCTOR
@@ -24,7 +26,7 @@ public class Player extends Army {
         bounds.y = height/2;
         bounds.width = width/2;
         bounds.height = height/2;
-        this.health=10;
+        this.health=MAX_HEALTH;
     }
 
 
@@ -73,7 +75,7 @@ public class Player extends Army {
     	}
     	attackTimer=0;
     	
-    	for(Entity e: handler.getWorld().getEntityManager().getEntities()){
+    	for(Entity e: ((WorldA)handler.getWorld()).getEntityManager().getEntities()){
     		if(e instanceof Player){
     			continue; //if this entity is Player, then continue
     		}
@@ -115,8 +117,9 @@ public class Player extends Army {
     public void render(Graphics g) {
         g.drawImage(Assets.soldier,(int)x,(int)y,width,height, null);
 
-        g.setColor(Color.red);
+        g.setColor(Color.blue);
         g.fillRect((int)(x+bounds.x),(int)y+bounds.y,bounds.width,bounds.height);
+		displayHealth(g);
     }
 
 
@@ -124,5 +127,15 @@ public class Player extends Army {
 	public void die() {
 		System.out.println("GAME OVER YOU DIED!");
 		
+	}
+
+	@Override
+	public void displayHealth(Graphics g) {
+        String str = Integer.toString(health);
+        g.drawString(str,750,45);
+		g.setColor(Color.GREEN);
+		g.fillRect(750,50,150*health/MAX_HEALTH,50);
+        g.setColor(Color.black);
+        g.drawRect(750,50,150,50);
 	}
 }

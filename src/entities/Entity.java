@@ -5,6 +5,7 @@ import handler.Handler;
 import java.awt.*;
 
 import entities.armies.Player;
+import worlds.WorldA;
 
 /**
  * Created by adrien on 12/05/16.
@@ -12,6 +13,7 @@ import entities.armies.Player;
  * Every object in the handler will be an entity
  */
 public abstract class Entity {
+    public static int MAX_HEALTH=10;
 
     //VARIABLES
 	protected int health;
@@ -48,7 +50,7 @@ public abstract class Entity {
     }
     
 	public boolean checkEntityCollisions(float xOffset, float yOffset){
-		for(Entity e : handler.getWorld().getEntityManager().getEntities()){
+		for(Entity e : ((WorldA)handler.getWorld()).getEntityManager().getEntities()){
 			if(e instanceof Player)
 				continue;
 			if(e.getCollisionBounds(0f, 0f).intersects(getCollisionBounds(xOffset, yOffset)))

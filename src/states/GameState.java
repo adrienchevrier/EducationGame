@@ -3,7 +3,7 @@ package states;
 
 
 import tiles.Tile;
-import worlds.World;
+import worlds.WorldA;
 
 import java.awt.*;
 
@@ -14,16 +14,16 @@ import java.awt.*;
 public class GameState extends State {
 
     
-    private World world;
+    private WorldA worldA;
  
 
     //CONSTRUCTOR
     public GameState(handler.Handler handler){
         super(handler);
         
-        //path to world information
-        world = new World(handler,"res/myWorlds/world1.txt");
-        handler.setWorld(world);
+        //path to worldA information
+        worldA = new WorldA(handler,"res/myWorlds/world1.txt");
+        handler.setWorld(worldA);
        
         
     }
@@ -32,13 +32,13 @@ public class GameState extends State {
     //calls required ticks
     @Override
     public void tick() {
-        world.tick();       
+        worldA.tick();
     }
 
     //displays handler to the screen
     @Override
     public void render(Graphics g) {
-        world.render(g);
+        worldA.render(g);
         
         
         Tile.tiles[3].render(g,0,0);
