@@ -30,6 +30,7 @@ public class CommandStack {
     public void allocateCommand(int x, int y, int[][] tiles){
     	System.out.println(x/64+" "+y/64+" "+tiles[x/64][y/64]);
     	if(tiles[x/64][y/64] == 0) {
+    		subStart();
     		tiles[x/64][y/64] = stack.remove(0);
     	}
     }
@@ -43,17 +44,21 @@ public class CommandStack {
     }
 
     public void addStart() {
-    	start++;
+    	if(stack.size()-start > 4) {
+    		start++;
+    	}
     }
     public void subStart() {
-    	start--;
+		if(start > 0) {
+			start--;
+		}
     }
     
     public void render(Graphics g){
     	BufferedImage img;
 		g.drawImage(stackImg, 704, 0, 100, 640, null);
 		if(start > 0) {
-			g.drawImage(Assets.dirt, 704, 576, null);
+			g.drawImage(Assets.dirt, 704, 0, null);
 		}
 		for(int i=start;i<start+4;i++) {
 			if(i < stack.size()) {
@@ -68,12 +73,12 @@ public class CommandStack {
 				} else {
 					img = Assets.grass;
 				}
-				g.drawImage(img, 704, 100+i*100, null);
+				g.drawImage(img, 704, 100+(i-start)*100, null);
 			} else {
 				break;
 			}
 		}
-		if(stack.size() > 4) {
+		if(stack.size()-start > 4) {
 			g.drawImage(Assets.dirt, 704, 576, null);
 		}
     }

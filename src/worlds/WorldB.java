@@ -51,15 +51,23 @@ public class WorldB extends World{
 	    	} else if(direction == 4) {
 	    		System.out.println("Win");
 	    	}
+
+	    	try {
+				Thread.sleep(300);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
     	} else {
-    		if(handler.getMouseManager().isLeftPressed() && (handler.getMouseManager().getMouseX() < width*64) && (handler.getMouseManager().getMouseX() < height*64))
+    		if(handler.getMouseManager().isLeftPressed() && (handler.getMouseManager().getMouseX() < width*64) && (handler.getMouseManager().getMouseX() < height*64)) {
     			commandStack.allocateCommand(handler.getMouseManager().getMouseX(), handler.getMouseManager().getMouseY(), tiles);
-    		//if(handler.getMouseManager().isLeftPressed() && (handler.getMouseManager().getMouseX() < width*64) && (handler.getMouseManager().getMouseX() < height*64))
-    			//commandStack;
-    		
+    		}
+    		if(handler.getMouseManager().isLeftPressed() && (704 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 768) && (576 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 650))
+    			commandStack.addStart();
+    		if(handler.getMouseManager().isLeftPressed() && (704 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 768) && (0 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 64))
+    			commandStack.subStart();
     	}
     	try {
-			Thread.sleep(500);
+			Thread.sleep(100);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
