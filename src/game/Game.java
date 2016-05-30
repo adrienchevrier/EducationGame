@@ -36,7 +36,7 @@ public class Game implements Runnable{
 
     //States
     //public State gameState;
-    public State gameBState;
+    public State gameState;
     public State menuState;
     private State A1State;
 
@@ -70,10 +70,11 @@ public class Game implements Runnable{
         
 
         //gameState = new GameState(handler);
-        gameBState = new GameBState(handler);
+        gameState = new GameBState(handler);
+        gameState = new MenuState(handler);
 
         //CurrentState.setState(gameState);
-        CurrentState.setState(gameBState);
+        CurrentState.setState(gameState);
     }
 
     //updates the screen

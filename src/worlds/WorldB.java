@@ -8,6 +8,8 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.logging.Handler;
 
+import entities.gameB.CommandStack;
+
 /**
  * Created by adrien on 12/05/16.
  * EducationGame project class
@@ -18,6 +20,7 @@ public class WorldB extends World{
     private handler.Handler handler;
     private int width=11 , height=10;
     private int spawnX=0 , spawnY=0;
+    private CommandStack commandStack = new CommandStack();
 
     //array of tiles
     private int[][] tiles = new int[width][height];
@@ -27,16 +30,14 @@ public class WorldB extends World{
     	super(handler, path);
         this.handler = handler;
         loadWorld(path);
-        loadCommand("res/myWorlds/command1");
     }
 
 	private int locationX = 1;
 	private int locationY = 1;
 	private int direction = 0;
-	private ArrayList<Integer> commandStack = new ArrayList<Integer>();
 
     public void tick(){
-    	if(commandStack.isEmpty()) {
+    	if(commandStack.getCommandStack().isEmpty()) {
 	    	if(direction == 0) {
 	    		action(locationX, locationY, ++locationX, locationY);
 	    	} else if(direction == 1) {
@@ -52,7 +53,10 @@ public class WorldB extends World{
 	    	}
     	} else {
     		if(handler.getMouseManager().isLeftPressed() && (handler.getMouseManager().getMouseX() < width*64) && (handler.getMouseManager().getMouseX() < height*64))
-    			allocateCommand(handler.getMouseManager().getMouseX(), handler.getMouseManager().getMouseY());
+    			commandStack.allocateCommand(handler.getMouseManager().getMouseX(), handler.getMouseManager().getMouseY(), tiles);
+    		//if(handler.getMouseManager().isLeftPressed() && (handler.getMouseManager().getMouseX() < width*64) && (handler.getMouseManager().getMouseX() < height*64))
+    			//commandStack;
+    		
     	}
     	try {
 			Thread.sleep(500);
@@ -60,22 +64,6 @@ public class WorldB extends World{
 			e.printStackTrace();
 		}
 
-    }
-    
-    private void loadCommand(String path){
-        String file = Utils.loadFileAsString(path);
-        String[]tokens = file.split("\\s+");
-
-        for (int i = 0; i < tokens.length; i++) {
-        	commandStack.add(Utils.parseInt(tokens[i]));
-        }
-    }
-    
-    private void allocateCommand(int x, int y){
-    	System.out.println(x/64+" "+y/64+" "+tiles[x/64][y/64]);
-    	if(tiles[x/64][y/64] == 0) {
-    		tiles[x/64][y/64] = commandStack.remove(0);
-    	}
     }
     
     private void action(int x1, int y1, int x2, int y2) {
@@ -119,6 +107,7 @@ public class WorldB extends World{
                 getTile(x,y).render(g,x*Tile.TILEWIDTH,y*Tile.TILEHEIGHT);
             }
         }
+    	commandStack.render(g);
     }
 
 
