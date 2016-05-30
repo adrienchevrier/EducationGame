@@ -5,6 +5,8 @@ import handler.Handler;
 
 import java.awt.*;
 
+import gfx.Assets;
+
 /**
  * Created by adrien on 12/05/16.
  * EducationGame project class
@@ -17,18 +19,30 @@ public class MenuState extends State{
 
     @Override
     public void tick() {
-    	System.out.println(handler.getMouseManager().getMouseX()+" "+handler.getMouseManager().getMouseY());
-    	if(handler.getMouseManager().isLeftPressed()&&handler.getMouseManager().isRightPressed()){
-    		CurrentState.setState(handler.getGame().gameState);	
+		if(handler.getMouseManager().isLeftPressed() && (500 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 564) && (500 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 564)){
+    		CurrentState.setState(handler.getGame().gameState = new GameBState(handler));
+    		try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+		if(handler.getMouseManager().isLeftPressed() && (700 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 764) && (500 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 564)){
+    		CurrentState.setState(handler.getGame().gameState = new GameState(handler));
+    		try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     	}
 
     }
 
     @Override
     public void render(Graphics g) {
-
-
-
-
+		g.drawImage(Assets.dirt, 500, 500, null);
+		g.drawImage(Assets.dirt, 700, 500, null);
     }
 }

@@ -35,6 +35,7 @@ public class Game implements Runnable{
     int x;
 
     //States
+    //public State gameState;
     public State gameState;
     public State menuState;
     private State A1State;
@@ -67,9 +68,11 @@ public class Game implements Runnable{
 
         handler = new handler.Handler(this);
         
-        
-        gameState = new GameState(handler);
 
+        //gameState = new GameState(handler);
+        gameState = new MenuState(handler);
+
+        //CurrentState.setState(gameState);
         CurrentState.setState(gameState);
     }
 
@@ -138,8 +141,8 @@ public class Game implements Runnable{
 
             //executes tick and render methods 60 times per second
             if (delta>=1) {
-                tick();
                 render();
+                tick();
                 ticks++;
                 delta--;
             }

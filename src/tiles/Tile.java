@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
  * Created by adrien on 12/05/16.
  * EducationGame project class
  */
-public class Tile {
+public abstract class Tile {
 
     //STATIC TOOLS
     public static Tile[] tiles = new Tile[256];
@@ -15,6 +15,13 @@ public class Tile {
     public static Tile dirtTile = new DirtTile(1);
     public static Tile RockTile = new RockTile(2);
     public static Tile DoorTile = new DoorTile(3);
+    
+    public static Tile characterTile = new Character(4);
+    public static Tile goalTile = new Goal(5);
+    public static Tile rightTile = new RightTile(6);
+    public static Tile leftTile = new LeftTile(7);
+    public static Tile downTile = new DownTile(8);
+    public static Tile upTile = new UpTile(9);
 
     //CLASS
 
