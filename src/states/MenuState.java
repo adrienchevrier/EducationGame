@@ -42,7 +42,12 @@ public class MenuState extends State{
 
     @Override
     public void render(Graphics g) {
+    	//First game
 		g.drawImage(Assets.dirt, 500, 500, null);
+		//2nd game
 		g.drawImage(Assets.dirt, 700, 500, null);
+		//3rd game
+		g.drawImage(Assets.dirt, 900, 500, null);
+
     }
 }
