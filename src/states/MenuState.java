@@ -37,7 +37,16 @@ public class MenuState extends State{
 				e.printStackTrace();
 			}
     	}
-
+		
+		if(handler.getMouseManager().isLeftPressed() && (900 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 964) && (500 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 564)){
+    		CurrentState.setState(handler.getGame().gameState = new GameCState(handler));
+    		try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
     }
 
     @Override
