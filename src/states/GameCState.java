@@ -12,11 +12,12 @@ public class GameCState extends State{
 	//Constructor
 	public GameCState(Handler handler) {
 		super(handler);
-		worldC = new WorldC();
+		worldC = new WorldC(handler);
 	}
 	//Override methods
 	@Override
 	public void tick() {
+		worldC.tick();
 	}
 
 	@Override
