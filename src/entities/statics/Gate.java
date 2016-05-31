@@ -7,12 +7,14 @@ import gfx.Assets;
 import handler.Handler;
 import states.CurrentState;
 import states.GameState;
+import states.MenuState;
 import tiles.Tile;
 
 public class Gate extends StaticEntity{
 
 	private int min;
 	private int max;
+	public static int currentLevel=1;
 
 	public Gate(Handler handler, float x, float y, int min, int max) {
 		super(handler, x, y, Tile.TILEWIDTH, Tile.TILEHEIGHT);
@@ -30,9 +32,13 @@ public class Gate extends StaticEntity{
 	public void checkCondition(int health){
 		if (health<=this.max && health>=this.min){
 			System.out.println("You Won!");
-			CurrentState.setState(handler.getGame().gameState = new GameState(handler));
+			currentLevel+=1;
+			CurrentState.setState(handler.getGame().gameState = new GameState(handler, currentLevel));
 		}else{
 			System.out.println("You Lost~");
+			currentLevel=0;
+			CurrentState.setState(handler.getGame().menuState = new MenuState(handler));
+			
 		}
 	}
 	

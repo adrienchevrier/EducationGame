@@ -18,11 +18,16 @@ public class GameState extends State {
  
 
     //CONSTRUCTOR
-    public GameState(handler.Handler handler){
+    public GameState(handler.Handler handler, int level){
         super(handler);
         
         //path to worldA information
-        worldA = new WorldA(handler,"res/myWorlds/world1.txt", 1);
+        if (level==1){
+        	worldA = new WorldA(handler,"res/myWorlds/world1.txt", level);
+        }else if(level==2){
+        	worldA = new WorldA(handler,"res/myWorlds/world2.txt", level);
+        }
+        
         handler.setWorld(worldA);
        
         
