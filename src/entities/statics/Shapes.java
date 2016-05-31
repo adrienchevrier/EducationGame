@@ -18,6 +18,13 @@ public class Shapes extends JPanel {
 	private static final long serialVersionUID = 1L;
     private Color color;
     private Shape type;
+    //All shape used
+    private Shape s1 = new Ellipse2D.Double(680, 100, 150, 80);
+	private Shape s2 = new Rectangle2D.Double(380, 100, 150, 80);
+	private Shape s3 = new Ellipse2D.Double(80, 100, 150, 80);
+	private Shape s4 = new RoundRectangle2D.Float(80, 250, 150, 80,20,20);
+	private Shape s5 = new Arc2D.Double(380, 185, 300, 150, 180, 90, Arc2D.PIE);
+	private Shape s6 = new RoundRectangle2D.Float(680, 250, 150, 80,20,20);
     
     //Getters and Setters
     public Color getColor() {
@@ -44,14 +51,14 @@ public class Shapes extends JPanel {
 		Random rand = new Random();
 		//Range of colors (10 possible colors)
 		allColor.add(Color.BLACK);
-		allColor.add(Color.BLUE);
-		allColor.add(Color.CYAN);
+		allColor.add(Color.BLUE.darker());
+		allColor.add(Color.CYAN.darker());
 		allColor.add(Color.GREEN);
-		allColor.add(Color.MAGENTA);
+		allColor.add(Color.MAGENTA.darker());
 		allColor.add(Color.ORANGE);
 		allColor.add(Color.PINK);
 		allColor.add(Color.RED);
-		allColor.add(Color.YELLOW);
+		allColor.add(Color.YELLOW.darker());
 		allColor.add(Color.WHITE);
 		//return a random color
 		return allColor.get(rand.nextInt(10));
@@ -63,19 +70,14 @@ public class Shapes extends JPanel {
 		ArrayList<Shape> allShape = new ArrayList<Shape>();
 		Random rand = new Random();
 		//Range of shapes possible (4 shapes possible)
-		allShape.add(new Rectangle2D.Double(380, 400, 150, 80));
-		allShape.add(new RoundRectangle2D.Float(380, 400, 150, 80,10,10));
-		allShape.add(new Ellipse2D.Double(380, 400, 150, 80));
-		allShape.add(new Arc2D.Double(380, 300, 300, 150, 180, 90, Arc2D.PIE));
+		allShape.add(new Rectangle2D.Double(380, 480, 150, 80));
+		allShape.add(new RoundRectangle2D.Float(380, 500, 150, 80,20,20));
+		allShape.add(new Ellipse2D.Double(380, 480, 150, 80));
+		allShape.add(new Arc2D.Double(380, 420, 300, 150, 180, 90, Arc2D.PIE));
 		//return a random shape (that we'll fill later)
 		return allShape.get(rand.nextInt(4));
 	}
 	
-	//To avoid blinking shape
-	public void drawShape(){
-	 repaint();
-	}
-		
 	//Override methods
 		@Override
 	public void paintComponent(Graphics g){	
@@ -83,8 +85,7 @@ public class Shapes extends JPanel {
 		super.paintComponent(g);
 		//Local variables
 		Graphics2D g2d = (Graphics2D) g;
-		Shape s1 = new Rectangle2D.Double(380, 100, 150, 80);
-		Shape s2 = new RoundRectangle2D.Float(80, 100, 150, 80,10,10);
+		
 		//Our component
 		Color gunColor = this.randomColor();
 		g2d.setColor(gunColor);
@@ -97,6 +98,25 @@ public class Shapes extends JPanel {
 		//2nd shape
 		g2d.setColor(gunColor);
 		g2d.fill(s2);
+		//3rd shape
+		g2d.setColor(this.randomColor());
+		g2d.fill(s3);
+		//4rd shape
+		g2d.setColor(this.randomColor());
+		g2d.fill(s4);
+		//5th shape
+		g2d.setColor(this.randomColor());
+	    g2d.fill(s5);
+	    //5th shape
+	  	g2d.setColor(this.randomColor());
+	  	g2d.fill(s6);
+				
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -19,6 +19,6 @@ public class WorldC extends World {
 	@Override
 	public void render(Graphics g) {
 		s.paintComponent(g);
-		
+
 	}
 }

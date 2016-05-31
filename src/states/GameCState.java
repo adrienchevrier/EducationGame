@@ -13,8 +13,6 @@ public class GameCState extends State{
 	public GameCState(Handler handler) {
 		super(handler);
 		worldC = new WorldC();
-        handler.setWorld(worldC);
-
 	}
 	//Override methods
 	@Override
