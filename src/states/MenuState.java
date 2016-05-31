@@ -19,7 +19,7 @@ public class MenuState extends State{
 
     @Override
     public void tick() {
-		if(handler.getMouseManager().isLeftPressed() && (500 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 564) && (500 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 564)){
+		if(handler.getMouseManager().isLeftPressed() && (40 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 440) && (400 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 600)){
     		CurrentState.setState(handler.getGame().gameState = new GameBState(handler));
     		try {
 				Thread.sleep(100);
@@ -28,8 +28,17 @@ public class MenuState extends State{
 				e.printStackTrace();
 			}
     	}
-		if(handler.getMouseManager().isLeftPressed() && (700 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 764) && (500 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 564)){
+		if(handler.getMouseManager().isLeftPressed() && (480 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 880) && (400 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 600)){
     		CurrentState.setState(handler.getGame().gameState = new GameAState(handler, 1));
+    		try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+		if(handler.getMouseManager().isLeftPressed() && (920 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 1320) && (400 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 600)){
+    		CurrentState.setState(handler.getGame().gameState = new GameCState(handler));
     		try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
@@ -43,11 +52,13 @@ public class MenuState extends State{
     @Override
     public void render(Graphics g) {
     	//First game
-		g.drawImage(Assets.dirt, 500, 500, null);
+    	g.drawImage(Assets.menuBackground, 0, 0, null);
+    	
+		g.drawImage(Assets.gameA1, 40, 400, null);
 		//2nd game
-		g.drawImage(Assets.dirt, 700, 500, null);
+		g.drawImage(Assets.gameB1, 480, 400, null);
 		//3rd game
-		g.drawImage(Assets.dirt, 900, 500, null);
+		g.drawImage(Assets.gameC1, 920, 400, null);
 
     }
 }

@@ -10,9 +10,11 @@ import java.awt.image.BufferedImage;
  */
 public class Assets {
     private static final int width = 64,height = 64;
+    private static final int screenWidth = 1366,screenHeight = 700;
 
     public static BufferedImage door, entrance, grass, dirt, player, ally, enemy, wall, genius,reset,menu,next;
     public static BufferedImage goal, character, right, left, down, up;
+    public static BufferedImage gameA1, gameA2, gameB1, gameB2, gameC1, gameC2, menuBackground, gameOverBackground, winBackground;
 
     //init images to be displayed
     public static void init(){
@@ -46,6 +48,36 @@ public class Assets {
         down = sheet.crop(width,height*4,width,height);
         up = sheet.crop(0,height*4,width,height);
         genius = sheet.crop(width*2,0,width,height);
+        
+        //menustates and game over
+        sheet = new SpriteSheet(ImageLoader.loadImage("/textures/OPEN.png"));
+        menuBackground=sheet.crop(0,0,screenWidth,screenHeight);
+        
+        sheet = new SpriteSheet(ImageLoader.loadImage("/textures/GAMEOVER.png"));
+        gameOverBackground=sheet.crop(0,0,screenWidth,screenHeight);
+        
+        sheet = new SpriteSheet(ImageLoader.loadImage("/textures/WIN.png"));
+        winBackground=sheet.crop(0,0,screenWidth,screenHeight);
+        
+        sheet = new SpriteSheet(ImageLoader.loadImage("/textures/GameA_bright.jpg"));
+        gameA1=sheet.crop(0,0,400,200);
+        sheet = new SpriteSheet(ImageLoader.loadImage("/textures/GameA_dark.jpg"));
+        gameA2=sheet.crop(0,0,400,200);
+        
+        sheet = new SpriteSheet(ImageLoader.loadImage("/textures/GameB_bright.jpg"));
+        gameB1=sheet.crop(0,0,400,200);
+        sheet = new SpriteSheet(ImageLoader.loadImage("/textures/GameB_dark.jpg"));
+        gameB2=sheet.crop(0,0,400,200);
+        
+        sheet = new SpriteSheet(ImageLoader.loadImage("/textures/GameC_bright.jpg"));
+        gameC1=sheet.crop(0,0,400,200);
+        sheet = new SpriteSheet(ImageLoader.loadImage("/textures/GameC_dark.jpg"));
+        gameC2=sheet.crop(0,0,400,200);
+        
+       
+        
+   
+        
 
 
     }
