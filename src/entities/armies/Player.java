@@ -2,6 +2,9 @@ package entities.armies;
 
 import gfx.Assets;
 import handler.Handler;
+import states.CurrentState;
+import states.GameState;
+import states.MenuState;
 
 import java.awt.*;
 
@@ -77,6 +80,12 @@ public class Player extends Army implements healthDisplaying {
     	
     	for(Entity e: ((WorldA)handler.getWorld()).getEntityManager().getEntities()){
     		if(e instanceof Player){
+    			
+    			if (((Player) e).health<=0){
+    				System.out.println("Game Over!");
+    				//go to game over mode
+    				CurrentState.setState(handler.getGame().menuState= new MenuState(handler));
+    			}
     			continue; //if this entity is Player, then continue
     		}
     		

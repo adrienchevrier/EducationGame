@@ -22,7 +22,7 @@ public class GameState extends State {
         super(handler);
         
         //path to worldA information
-        worldA = new WorldA(handler,"res/myWorlds/world1.txt");
+        worldA = new WorldA(handler,"res/myWorlds/world1.txt", 1);
         handler.setWorld(worldA);
        
         
