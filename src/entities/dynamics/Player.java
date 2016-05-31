@@ -123,10 +123,9 @@ public class Player extends Army implements healthDisplaying {
     //displays the player
     @Override
     public void render(Graphics g) {
-        g.drawImage(Assets.soldier,(int)x,(int)y,width,height, null);
+        g.drawImage(Assets.player,(int)x,(int)y,width,height, null);
 
-        g.setColor(Color.blue);
-        g.fillRect((int)(x+bounds.x),(int)y+bounds.y,bounds.width,bounds.height);
+ 
 		displayHealth(g);
     }
 

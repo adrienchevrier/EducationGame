@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import gfx.Assets;
 import handler.Handler;
 import states.CurrentState;
+import states.EndState;
 import states.GameAState;
 import states.GameOver;
 import states.MenuState;
@@ -16,7 +17,7 @@ public class Gate extends StaticEntity{
 	private int min;
 	private int max;
 	public static int currentLevel=1;
-	public static final int maxLevel=2;
+	public static final int maxLevel=3;
 
 	public Gate(Handler handler, float x, float y, int min, int max) {
 		super(handler, x, y, Tile.TILEWIDTH, Tile.TILEHEIGHT);
@@ -38,10 +39,11 @@ public class Gate extends StaticEntity{
 			currentLevel+=1;
 			if(currentLevel>maxLevel){
 				System.out.println("Game completed! Good Job");
-				CurrentState.setState(handler.getGame().menuState = new MenuState(handler));
-			}
+				CurrentState.setState(handler.getGame().gameState = new EndState(handler, CurrentState.getState()));
+			}else{
 			
-			CurrentState.setState(handler.getGame().gameState = new GameAState(handler, currentLevel));
+				CurrentState.setState(handler.getGame().gameState = new GameAState(handler, currentLevel));
+			}
 		}else{
 			System.out.println("You Lost~");
 			currentLevel=0;

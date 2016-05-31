@@ -30,10 +30,8 @@ public class Ally extends StaticEntity implements healthDisplaying {
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(Assets.soldier, (int) x, (int) y, width, height, null);
-		g.setColor(Color.GREEN);
-
-        g.fillRect((int)(x+bounds.x),(int)y+bounds.y,bounds.width,bounds.height);
+		g.drawImage(Assets.ally, (int) x, (int) y, width, height, null);
+	
 		displayHealth(g);
 		
 	}

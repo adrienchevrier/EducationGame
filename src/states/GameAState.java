@@ -26,6 +26,8 @@ public class GameAState extends State {
         	worldA = new WorldA(handler,"res/myWorlds/world1.txt", level);
         }else if(level==2){
         	worldA = new WorldA(handler,"res/myWorlds/world2.txt", level);
+        }else if(level==3){
+        	worldA = new WorldA(handler,"res/myWorlds/world3.txt", level);
         }
         
         handler.setWorld(worldA);

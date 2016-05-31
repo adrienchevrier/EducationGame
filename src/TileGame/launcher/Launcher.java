@@ -10,7 +10,7 @@ public class Launcher {
 
     public static void main(String[] args) {
 
-        Game game = new Game("Game",1000,1000);
+        Game game = new Game("Game",1366,700);
         game.start();
     }
 }
