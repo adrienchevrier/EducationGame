@@ -142,7 +142,7 @@ public class Player extends Army implements healthDisplaying {
 	public void displayHealth(Graphics g) {
         String str = Integer.toString(health);
         g.drawString(str,750,45);
-		g.setColor(Color.GREEN);
+		g.setColor(Color.blue);
 		g.fillRect(750,50,150*health/MAX_HEALTH,50);
         g.setColor(Color.black);
         g.drawRect(750,50,150,50);
