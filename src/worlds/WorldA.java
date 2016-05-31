@@ -1,14 +1,11 @@
 package worlds;
 
-import game.Game;
 import tiles.Tile;
-import utils.Utils;
 
 import java.awt.*;
-import java.util.logging.Handler;
 
 import entities.EntityManager;
-import entities.armies.Player;
+import entities.dynamics.Player;
 import entities.statics.Ally;
 import entities.statics.Enemy;
 import entities.statics.Gate;

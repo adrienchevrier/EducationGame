@@ -7,6 +7,7 @@ import gfx.Assets;
 import handler.Handler;
 import states.CurrentState;
 import states.GameAState;
+import states.GameOver;
 import states.MenuState;
 import tiles.Tile;
 
@@ -44,7 +45,7 @@ public class Gate extends StaticEntity{
 		}else{
 			System.out.println("You Lost~");
 			currentLevel=0;
-			CurrentState.setState(handler.getGame().menuState = new MenuState(handler));
+			CurrentState.setState(handler.getGame().gameState = new GameOver(handler,CurrentState.getState()));
 			
 		}
 	}

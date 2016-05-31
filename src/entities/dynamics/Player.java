@@ -1,9 +1,9 @@
-package entities.armies;
+package entities.dynamics;
 
 import gfx.Assets;
 import handler.Handler;
 import states.CurrentState;
-import states.MenuState;
+import states.GameOver;
 
 import java.awt.*;
 
@@ -83,7 +83,7 @@ public class Player extends Army implements healthDisplaying {
     			if (((Player) e).health<=0){
     				System.out.println("Game Over!");
     				//go to game over mode
-    				CurrentState.setState(handler.getGame().menuState= new MenuState(handler));
+    				die();
     			}
     			continue; //if this entity is Player, then continue
     		}
@@ -133,7 +133,9 @@ public class Player extends Army implements healthDisplaying {
 
 	@Override
 	public void die() {
+		GameOver gameOver = new GameOver(handler,CurrentState.getState());
 		System.out.println("GAME OVER YOU DIED!");
+		CurrentState.setState(gameOver);
 		
 	}
 

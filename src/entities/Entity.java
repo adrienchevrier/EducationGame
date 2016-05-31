@@ -4,7 +4,7 @@ import handler.Handler;
 
 import java.awt.*;
 
-import entities.armies.Player;
+import entities.dynamics.Player;
 import worlds.WorldA;
 
 /**
