@@ -1,15 +1,17 @@
 package entities.statics;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 import gfx.Assets;
 import handler.Handler;
 import states.CurrentState;
-import states.GameState;
+import states.GameAState;
 import tiles.Tile;
 
 public class Gate extends StaticEntity{
+
+	public final boolean WIN = true;
+	public final boolean LOOSE = false;
 
 	private int min;
 	private int max;
@@ -27,12 +29,14 @@ public class Gate extends StaticEntity{
 		
 	}
 	
-	public void checkCondition(int health){
+	public boolean checkCondition(int health){
 		if (health<=this.max && health>=this.min){
 			System.out.println("You Won!");
-			CurrentState.setState(handler.getGame().gameState = new GameState(handler));
+			return WIN;
+			//CurrentState.setState(handler.getGame().gameState = new GameAState(handler));
 		}else{
 			System.out.println("You Lost~");
+			return LOOSE;
 		}
 	}
 	

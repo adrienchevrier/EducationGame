@@ -18,6 +18,7 @@ import worlds.WorldA;
  */
 public class Player extends Army implements healthDisplaying {
 	private long lastAttackTimer, attackCooldown=100, attackTimer=attackCooldown;
+    private int end = 0;
 
     //CONSTRUCTOR
     public Player(Handler handler, float x, float y) {
@@ -91,14 +92,15 @@ public class Player extends Army implements healthDisplaying {
     				this.health+=1;
     				System.out.println("Player's health "+this.health);
     			}else if(e instanceof Gate){
-    				((Gate) e).checkCondition(this.health);
+    				if(((Gate) e).checkCondition(this.health)){
+                        end=1;
+                    }
+                    else end = 2;
     			}
     			return;
     		}
     		
     	}
-    	
-    	
     }
 
     //method sets shifting of player according to input
@@ -115,11 +117,25 @@ public class Player extends Army implements healthDisplaying {
     //displays the player
     @Override
     public void render(Graphics g) {
-        g.drawImage(Assets.soldier,(int)x,(int)y,width,height, null);
+        switch (end){
+            case 0:
+                g.drawImage(Assets.soldier,(int)x,(int)y,width,height, null);
 
-        g.setColor(Color.blue);
-        g.fillRect((int)(x+bounds.x),(int)y+bounds.y,bounds.width,bounds.height);
-		displayHealth(g);
+                g.setColor(Color.blue);
+                g.fillRect((int)(x+bounds.x),(int)y+bounds.y,bounds.width,bounds.height);
+                displayHealth(g);
+                break;
+            case 1 :
+                levelWon(g);
+                break;
+            case 2 :
+                levelLost(g);
+                break;
+            default:
+                System.err.println("END ERROR");
+
+        }
+
     }
 
 
@@ -138,4 +154,13 @@ public class Player extends Army implements healthDisplaying {
         g.setColor(Color.black);
         g.drawRect(750,50,150,50);
 	}
+
+    public void levelWon(Graphics g){
+        //g.setColor(B);
+        g.fillRect(0,0,width,height);
+    }
+
+    public void levelLost(Graphics g){
+
+    }
 }

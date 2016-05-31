@@ -11,14 +11,14 @@ import java.awt.*;
  * Created by adrien on 10/05/16.
  * EducationGame project class
  */
-public class GameState extends State {
+public class GameAState extends State {
 
     
     private WorldA worldA;
  
 
     //CONSTRUCTOR
-    public GameState(handler.Handler handler){
+    public GameAState(handler.Handler handler){
         super(handler);
         
         //path to worldA information

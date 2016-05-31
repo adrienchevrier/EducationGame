@@ -69,7 +69,7 @@ public class Game implements Runnable{
         handler = new handler.Handler(this);
         
 
-        //gameState = new GameState(handler);
+        //gameState = new GameAState(handler);
         gameState = new MenuState(handler);
 
         //CurrentState.setState(gameState);
