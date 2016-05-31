@@ -26,21 +26,45 @@ public class WorldA extends World {
 
 
     //CONSTRUCTOR
-    public WorldA(handler.Handler handler, String path){
+    public WorldA(handler.Handler handler, String path, int level){
         this.handler = handler;
         entityManager=new EntityManager(handler, new Player(handler, 0, 0));
         //create enemy here
-        entityManager.addEntity(new Enemy(handler, 200, 400, 10));
-        entityManager.addEntity(new Enemy(handler, 70, 400, 5));
-        entityManager.addEntity(new Enemy(handler, 500, 400, 8));
-        entityManager.addEntity(new Enemy(handler, 500, 500, 3));
-        entityManager.addEntity(new Enemy(handler, 500, 300, 9));
         
-        entityManager.addEntity(new Ally(handler, 300, 400, 8));
-        entityManager.addEntity(new Ally(handler, 600, 500, 3));
-        entityManager.addEntity(new Ally(handler, 100, 300, 9));
+        if(level==1){
         
-        entityManager.addEntity(new Gate(handler, 500, 100, 1, 9));
+        	entityManager.addEntity(new Enemy(handler, 200, 400, 10));
+       		entityManager.addEntity(new Enemy(handler, 70, 400, 5));
+        	entityManager.addEntity(new Enemy(handler, 500, 400, 8));
+       		entityManager.addEntity(new Enemy(handler, 500, 500, 3));
+   			entityManager.addEntity(new Enemy(handler, 500, 300, 9));
+       		entityManager.addEntity(new Ally(handler, 300, 400, 8));
+       		entityManager.addEntity(new Ally(handler, 600, 500, 3));
+     		entityManager.addEntity(new Ally(handler, 100, 300, 9)); 
+       		entityManager.addEntity(new Gate(handler, 500, 100, 1, 9));
+        }else if(level==2){
+        	entityManager.addEntity(new Enemy(handler, 200, 400, 10));
+       		entityManager.addEntity(new Enemy(handler, 70, 400, 5));
+        	entityManager.addEntity(new Enemy(handler, 500, 400, 8));
+       		entityManager.addEntity(new Enemy(handler, 500, 500, 3));
+   			entityManager.addEntity(new Enemy(handler, 500, 300, 9));
+       		entityManager.addEntity(new Ally(handler, 300, 400, 8));
+       		entityManager.addEntity(new Ally(handler, 600, 500, 3));
+     		entityManager.addEntity(new Ally(handler, 100, 300, 9)); 
+       		entityManager.addEntity(new Gate(handler, 500, 100, 1, 9));
+        	
+        }else if(level==3){
+        	entityManager.addEntity(new Enemy(handler, 200, 400, 10));
+       		entityManager.addEntity(new Enemy(handler, 70, 400, 5));
+        	entityManager.addEntity(new Enemy(handler, 500, 400, 8));
+       		entityManager.addEntity(new Enemy(handler, 500, 500, 3));
+   			entityManager.addEntity(new Enemy(handler, 500, 300, 9));
+       		entityManager.addEntity(new Ally(handler, 300, 400, 8));
+       		entityManager.addEntity(new Ally(handler, 600, 500, 3));
+     		entityManager.addEntity(new Ally(handler, 100, 300, 9)); 
+       		entityManager.addEntity(new Gate(handler, 500, 100, 1, 9));
+        	
+        }
         
         
         

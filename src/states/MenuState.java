@@ -29,7 +29,7 @@ public class MenuState extends State{
 			}
     	}
 		if(handler.getMouseManager().isLeftPressed() && (700 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 764) && (500 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 564)){
-    		CurrentState.setState(handler.getGame().gameState = new GameAState(handler));
+    		CurrentState.setState(handler.getGame().gameState = new GameState(handler, 1));
     		try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
