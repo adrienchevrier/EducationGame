@@ -11,7 +11,7 @@ import utils.Utils;
 
 public class CommandStack {
 	private ArrayList<Integer> stack = new ArrayList<Integer>();
-	private BufferedImage stackImg = new SpriteSheet(ImageLoader.loadImage("/textures/table.png")).crop(64,192,64,64);
+	private BufferedImage stackImg = new SpriteSheet(ImageLoader.loadImage("/textures/container.png")).crop(0,0,100,640);
 	private int start = 0;
 	
 	public CommandStack() {

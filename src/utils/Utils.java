@@ -40,7 +40,4 @@ public class Utils {
         }
     }
 
-    public void DisplayHealth(Graphics g){
-
-    }
 }

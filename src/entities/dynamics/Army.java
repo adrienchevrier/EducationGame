@@ -1,10 +1,9 @@
-package entities.armies;
+package entities.dynamics;
 
 import entities.Entity;
 import handler.Handler;
 
 import tiles.Tile;
-import worlds.WorldA;
 
 /**
  * Created by adrien on 12/05/16.
@@ -18,7 +17,7 @@ public abstract class Army extends Entity {
     public static final int DEFAULT_CREATURE_WIDTH = 64;
     public static final int DEFAULT_CREATURE_HEIGHT = 64;
 
-    //armies variables
+    //dynamics variables
 
     protected float speed;
     protected float xMove;

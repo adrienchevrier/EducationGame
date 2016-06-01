@@ -4,14 +4,14 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-import entities.armies.Player;
+import entities.dynamics.Player;
 import handler.Handler;
 
 public class EntityManager {
 	
 	private Handler handler;
 	private Player player;
-	private ArrayList<Entity> entities;
+	private ArrayList<Entity> entities = new ArrayList<Entity>();
 	private Entity e;
 	private Comparator<Entity> renderSorter = new Comparator<Entity>(){
 		@Override
@@ -26,7 +26,6 @@ public class EntityManager {
 	public EntityManager(Handler handler, Player player){
 		this.handler=handler;
 		this.player=player;
-		entities=new ArrayList<Entity>();
 		this.addEntity(player);
 	}
 	

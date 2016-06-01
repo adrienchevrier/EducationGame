@@ -11,14 +11,14 @@ import java.awt.*;
  * Created by adrien on 10/05/16.
  * EducationGame project class
  */
-public class GameState extends State {
+public class GameAState extends State {
 
     
     private WorldA worldA;
  
 
     //CONSTRUCTOR
-    public GameState(handler.Handler handler, int level){
+    public GameAState(handler.Handler handler, int level){
         super(handler);
         
         //path to worldA information
@@ -26,6 +26,8 @@ public class GameState extends State {
         	worldA = new WorldA(handler,"res/myWorlds/world1.txt", level);
         }else if(level==2){
         	worldA = new WorldA(handler,"res/myWorlds/world2.txt", level);
+        }else if(level==3){
+        	worldA = new WorldA(handler,"res/myWorlds/world3.txt", level);
         }
         
         handler.setWorld(worldA);
