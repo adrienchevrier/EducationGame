@@ -33,7 +33,7 @@ public class GameOver extends State {
 
     @Override
     public void tick() {
-        if(handler.getMouseManager().isLeftPressed() && (400 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 464) && (500 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 564)){
+        if(handler.getMouseManager().isLeftPressed() && (186 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 586) && (400 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 600)){
             reset();
             try {
                 Thread.sleep(100);
@@ -42,7 +42,7 @@ public class GameOver extends State {
                 e.printStackTrace();
             }
         }
-        if(handler.getMouseManager().isLeftPressed() && (600 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 664) && (500 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 564)){
+        if(handler.getMouseManager().isLeftPressed() && (772 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 1172) && (400 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 600)){
             CurrentState.setState(handler.getGame().gameState = new MenuState(handler));
             try {
                 Thread.sleep(100);
@@ -57,11 +57,23 @@ public class GameOver extends State {
     @Override
     public void render(Graphics g) {
 
-        g.drawImage(img,-500,-200,null);
+        g.drawImage(Assets.gameOverBackground,0, 0, null);
         //First game
-        g.drawImage(Assets.reset, 400, 500, null);
+        if((186 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 586) && (400 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 600)){
+        	g.drawImage(Assets.retry2, 186,400, null);
+        }
+        else{
+        	g.drawImage(Assets.retry1, 186, 400, null);
+        }
+        
         //2nd game
-        g.drawImage(Assets.menu, 600, 500, null);
+        if((772 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 1172) && (400 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 600)){
+        	g.drawImage(Assets.menu2, 772, 400, null);
+        }
+        else{
+        	g.drawImage(Assets.menu1, 772, 400, null);
+        }
+        
     }
 
     public void reset(){

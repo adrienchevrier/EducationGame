@@ -14,7 +14,7 @@ public class Assets {
 
     public static BufferedImage door, entrance, grass, dirt, player, ally, enemy, wall, genius,reset,menu,next;
     public static BufferedImage goal, character, right, left, down, up;
-    public static BufferedImage gameA1, gameA2, gameB1, gameB2, gameC1, gameC2, menuBackground, gameOverBackground, winBackground;
+    public static BufferedImage gameA1, gameA2, gameB1, gameB2, gameC1, gameC2, menuBackground, gameOverBackground, winBackground, retry1, retry2, menu1, menu2;
 
     //init images to be displayed
     public static void init(){
@@ -74,7 +74,16 @@ public class Assets {
         sheet = new SpriteSheet(ImageLoader.loadImage("/textures/GameC_dark.jpg"));
         gameC2=sheet.crop(0,0,400,200);
         
-       
+        sheet = new SpriteSheet(ImageLoader.loadImage("/textures/MENU.png"));
+        menu1=sheet.crop(0,0,400,200);
+        sheet = new SpriteSheet(ImageLoader.loadImage("/textures/MENU_bright.png"));
+        menu2=sheet.crop(0, 0, 400, 200);
+        
+        sheet = new SpriteSheet(ImageLoader.loadImage("/textures/RETRY.png"));
+        retry1=sheet.crop(0, 0, 400, 200);
+        sheet = new SpriteSheet(ImageLoader.loadImage("/textures/RETRY_bright.png"));
+        retry2=sheet.crop(0, 0, 400, 200);
+        
         
    
         

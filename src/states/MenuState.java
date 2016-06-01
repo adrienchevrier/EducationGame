@@ -53,12 +53,29 @@ public class MenuState extends State{
     public void render(Graphics g) {
     	//First game
     	g.drawImage(Assets.menuBackground, 0, 0, null);
-    	
-		g.drawImage(Assets.gameA1, 40, 400, null);
+    	if ((40 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 440) && (400 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 600)){
+    		g.drawImage(Assets.gameA1, 40, 400, null);
+    	}
+    	else{
+    		g.drawImage(Assets.gameA2, 40, 400, null);
+    	}
+		
 		//2nd game
-		g.drawImage(Assets.gameB1, 480, 400, null);
+    	if((480 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 880) && (400 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 600)){
+    		g.drawImage(Assets.gameB1, 480, 400, null);
+    	}
+    	else{
+    		g.drawImage(Assets.gameB2, 480, 400, null);
+    	}
+		
 		//3rd game
-		g.drawImage(Assets.gameC1, 920, 400, null);
+    	if((920 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 1320) && (400 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 600)){
+    		g.drawImage(Assets.gameC1, 920, 400, null);
+    	}
+    	else{
+    		g.drawImage(Assets.gameC2, 920, 400, null);
+    	}
+		
 
     }
 }
