@@ -1,11 +1,13 @@
 package entities.dynamics;
 
+import gfx.Animation;
 import gfx.Assets;
 import handler.Handler;
 import states.CurrentState;
 import states.GameOver;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 import entities.Entity;
 import entities.statics.Ally;
@@ -20,6 +22,11 @@ import worlds.WorldA;
  */
 public class Player extends Army implements healthDisplaying {
 	private long lastAttackTimer, attackCooldown=100, attackTimer=attackCooldown;
+	
+	//Animation
+	
+	private Animation animFront, animRight, animLeft, animBack;
+	
 
     //CONSTRUCTOR
     public Player(Handler handler, float x, float y) {
@@ -29,13 +36,24 @@ public class Player extends Army implements healthDisplaying {
         bounds.width = width/2;
         bounds.height = height/2;
         this.health=MAX_HEALTH;
+        
+        animFront=new Animation(500, Assets.player_front);
+        animRight=new Animation(500, Assets.player_right);
+        animLeft=new Animation(500, Assets.player_left);
+        animBack=new Animation(500, Assets.player_back);
     }
 
 
     //each tick takes input and moves
     @Override
     public void tick() {
-
+    	//Animation
+    	animFront.tick();
+    	animRight.tick();
+    	animLeft.tick();
+    	animBack.tick();
+    	
+    	//Movement
         getInput();
         move();
         //Attack
@@ -123,12 +141,26 @@ public class Player extends Army implements healthDisplaying {
     //displays the player
     @Override
     public void render(Graphics g) {
-        g.drawImage(Assets.player,(int)x,(int)y,width,height, null);
+        g.drawImage(this.getCurrentAnimationFrame(),(int)x,(int)y,width,height, null);
 
  
 		displayHealth(g);
     }
-
+    
+    public BufferedImage getCurrentAnimationFrame(){
+    	if(xMove<0){
+    		return animLeft.getCurrentFrame();
+    	}else if(xMove>0){
+    		return animRight.getCurrentFrame();
+    	}else if(yMove<0){
+    		return animBack.getCurrentFrame();
+    	}else{
+    		return animFront.getCurrentFrame();
+    	}
+    	
+    	
+    }
+    
 
 	@Override
 	public void die() {

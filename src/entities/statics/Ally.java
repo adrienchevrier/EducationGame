@@ -1,6 +1,9 @@
 package entities.statics;
 
 import java.awt.Color;
+
+import gfx.Animation;
+
 import java.awt.Graphics;
 
 import gfx.Assets;
@@ -10,8 +13,8 @@ import utils.intefaces.healthDisplaying;
 
 public class Ally extends StaticEntity implements healthDisplaying {
 
+	private Animation animFront;
 	
-
 	public Ally(Handler handler, float x, float y, int health) {
 		super(handler, x, y, Tile.TILEWIDTH, Tile.TILEHEIGHT);
         bounds.x = width/4;
@@ -20,17 +23,17 @@ public class Ally extends StaticEntity implements healthDisplaying {
         bounds.height = height/2;
         this.health=health;
         
-		
+        animFront=new Animation(500, Assets.ally_front);
 	}
 
 	@Override
 	public void tick() {
-		
+		animFront.tick();
 	}
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(Assets.ally, (int) x, (int) y, width, height, null);
+		g.drawImage(animFront.getCurrentFrame(), (int) x, (int) y, width, height, null);
 	
 		displayHealth(g);
 		

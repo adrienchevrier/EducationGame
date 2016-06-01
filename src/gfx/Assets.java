@@ -12,7 +12,7 @@ public class Assets {
     private static final int width = 64,height = 64;
     private static final int screenWidth = 1366,screenHeight = 700;
 
-    public static BufferedImage door, entrance, grass, dirt, player, ally, enemy, wall, genius,reset,menu,next;
+    public static BufferedImage door, entrance, grass, dirt, wall, genius,reset,menu,next;
     public static BufferedImage goal, character, right, left, down, up;
     public static BufferedImage gameA1, gameA2, gameB1, gameB2, gameC1, gameC2, menuBackground, gameOverBackground, winBackground, retry1, retry2, menu1, menu2;
     
@@ -25,9 +25,7 @@ public class Assets {
         SpriteSheet sheet;
         sheet = new SpriteSheet(ImageLoader.loadImage("/textures/Characters.png"));
         
-        player=sheet.crop(9*width,4*height,width,height);
-        ally=sheet.crop(0,0,width,height);
-        enemy=sheet.crop(3*width,4*height,width,height);
+
         
 		player_front= new BufferedImage[3];
 		player_right= new BufferedImage[3];
