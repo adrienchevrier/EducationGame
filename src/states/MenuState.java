@@ -20,7 +20,7 @@ public class MenuState extends State{
     @Override
     public void tick() {
 		if(handler.getMouseManager().isLeftPressed() && (40 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 440) && (400 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 600)){
-    		CurrentState.setState(handler.getGame().gameState = new GameBState(handler));
+    		CurrentState.setState(handler.getGame().gameState = new GameAState(handler,1));
     		try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
@@ -29,7 +29,7 @@ public class MenuState extends State{
 			}
     	}
 		if(handler.getMouseManager().isLeftPressed() && (480 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 880) && (400 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 600)){
-    		CurrentState.setState(handler.getGame().gameState = new GameAState(handler, 1));
+    		CurrentState.setState(handler.getGame().gameState = new GameBState(handler));
     		try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
