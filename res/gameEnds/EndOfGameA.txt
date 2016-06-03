@@ -1,0 +1,6 @@
+Congratulations!!!
+You just learnt how to manage conditions!!
+When developers build softwares they often have to use if statements,
+Here is an illustration of what you did by programming :
+ if(lifeOfPlayer<10 and lifeOfPlayer>3)
+    then Level is finished

@@ -1,14 +1,13 @@
 package states;
 
 import gfx.Assets;
-import gfx.ImageLoader;
-import gfx.SpriteSheet;
 import handler.Handler;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -16,12 +15,21 @@ import java.io.IOException;
  * EducationGame project class
  */
 public class EndState extends State {
-    State previousState;
+    private State previousState;
+    private BufferedImage image=null;
 
 
     public EndState(Handler handler,State previousState) {
         super(handler);
         this.previousState = previousState;
+        try {
+            image = ImageIO.read(new File("res/gameEnds/EndOfGameA.png"));
+        }catch (FileNotFoundException e){
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
     }
 
@@ -49,7 +57,8 @@ public class EndState extends State {
     @Override
     public void render(Graphics g) {
 
-        g.drawString("Continue?",500,200);
+        g.drawImage(image,150,150,null);
+        //g.drawString("Continue?",500,200);
         //First game
         g.drawImage(Assets.next, 400, 500, null);
         //2nd game
