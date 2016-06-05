@@ -30,7 +30,7 @@ public class WorldC extends World {
 
 	@Override
 	public void render(Graphics g) {
-		GameCThread t = new GameCThread(handler, g);
+
 		
 	}
 

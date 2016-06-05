@@ -11,6 +11,7 @@ import java.awt.*;
 public abstract class World {
 
 
+
     //VARIABLES
     protected handler.Handler handler;
     protected int width=11 , height=10;
