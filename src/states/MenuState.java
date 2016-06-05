@@ -19,40 +19,43 @@ public class MenuState extends State{
 
     @Override
     public void tick() {
+
+		//game A is launched if game B button is pressed
 		if(handler.getMouseManager().isLeftPressed() && (40 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 440) && (400 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 600)){
     		CurrentState.setState(handler.getGame().gameState = new GameAState(handler,1));
     		try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
     	}
+
+		//Game B launched if B button is pressed
 		if(handler.getMouseManager().isLeftPressed() && (480 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 880) && (400 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 600)){
     		CurrentState.setState(handler.getGame().gameState = new GameBState(handler));
     		try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
     	}
+
+		//Game C launched if C button is pressed
 		if(handler.getMouseManager().isLeftPressed() && (920 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 1320) && (400 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 600)){
     		CurrentState.setState(handler.getGame().gameState = new GameCState(handler));
     		try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
     	}
-		
+
+		//Game
 		if(handler.getMouseManager().isLeftPressed() && (900 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 964) && (500 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 564)){
     		CurrentState.setState(handler.getGame().gameState = new GameCState(handler));
     		try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
     	}
