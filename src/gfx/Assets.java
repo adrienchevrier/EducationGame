@@ -23,11 +23,9 @@ public class Assets {
     //init images to be displayed
     public static void init(){
         SpriteSheet sheet;
-        sheet = new SpriteSheet(ImageLoader.loadImage("/textures/Characters.png"));
-        
 
-        
-		player_front= new BufferedImage[3];
+
+        player_front= new BufferedImage[3];
 		player_right= new BufferedImage[3];
 		player_left= new BufferedImage[3];
 		player_back= new BufferedImage[3];
@@ -68,7 +66,7 @@ public class Assets {
 		// Ally Animation
 
 		ally_front[0] = sheet.crop(0, 0, width, height);
-		ally_front[1] = sheet.crop(1 * width, 0, width, height);
+		ally_front[1] = sheet.crop(width, 0, width, height);
 		ally_front[2] = sheet.crop(2 * width, 0, width, height);
 
 		ally_right[0] = sheet.crop(0, 2 * height, width, height);
@@ -112,6 +110,7 @@ public class Assets {
         reset = sheet.crop(width,height,width,height);
         menu = sheet.crop(2*width,height,width,height);
         next = sheet.crop(3*width,height,width,height);
+
 
 
         //Part B
