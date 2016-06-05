@@ -43,6 +43,8 @@ public class Game implements Runnable{
     private MouseManager mousemanager;
 
 
+
+
     //Constructor
     public Game(String title, int width, int height) {
         this.height = height;
@@ -64,10 +66,11 @@ public class Game implements Runnable{
         Assets.init();
 
         handler = new handler.Handler(this);
-        
 
         //gameState = new GameAState(handler);
         gameState = new MenuState(handler);
+
+
 
         //CurrentState.setState(gameState);
         CurrentState.setState(gameState);
