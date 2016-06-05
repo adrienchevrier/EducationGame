@@ -7,7 +7,6 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -22,16 +21,21 @@ public class EndState extends State {
     public EndState(Handler handler,State previousState) {
         super(handler);
         this.previousState = previousState;
-        try {
-            image = ImageIO.read(new File("res/gameEnds/EndOfGameA.png"));
-        }catch (FileNotFoundException e){
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+
+            try {
+                if (previousState instanceof GameAState) {
+                    image = ImageIO.read(new File("res/gameEnds/EndOfGameA.png"));
+                }
+                if (previousState instanceof GameBState) {
+                    image = ImageIO.read(new File("res/gameEnds/EndOfGameB.png"));
+                }
+                if (previousState instanceof GameBState) {
+                    image = ImageIO.read(new File("res/gameEnds/EndOfGameB.png"));
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-
-
-    }
 
     @Override
     public void tick() {
@@ -66,6 +70,7 @@ public class EndState extends State {
     }
 
     public void next(){
+        //Select next state depending on level finished
         if (previousState instanceof GameAState){
             CurrentState.setState(handler.getGame().gameState = new GameBState(handler));
         }
