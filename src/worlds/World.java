@@ -2,7 +2,6 @@ package worlds;
 
 import tiles.Tile;
 import utils.Utils;
-
 import java.awt.*;
 
 /**
@@ -10,6 +9,7 @@ import java.awt.*;
  * EducationGame project class
  */
 public abstract class World {
+
 
     //VARIABLES
     protected handler.Handler handler;

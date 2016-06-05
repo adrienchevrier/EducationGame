@@ -3,6 +3,7 @@ package entities.statics;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import gfx.Animation;
 import gfx.Assets;
 import handler.Handler;
 import tiles.Tile;
@@ -10,7 +11,7 @@ import utils.intefaces.healthDisplaying;
 
 public class Enemy extends StaticEntity implements healthDisplaying {
 
-	
+	private Animation animFront;
 
 	public Enemy(Handler handler, float x, float y, int health) {
 		super(handler, x, y, Tile.TILEWIDTH, Tile.TILEHEIGHT);
@@ -20,17 +21,19 @@ public class Enemy extends StaticEntity implements healthDisplaying {
         bounds.height = height/2;
         this.health=health;
         
+        animFront=new Animation(500, Assets.enemy_front);
+        
 		
 	}
 
 	@Override
 	public void tick() {
-		
+		animFront.tick();
 	}
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(Assets.enemy, (int) x, (int) y, width, height, null);
+		g.drawImage(animFront.getCurrentFrame(), (int) x, (int) y, width, height, null);
 		
 		displayHealth(g);
 		

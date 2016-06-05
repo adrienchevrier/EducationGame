@@ -7,9 +7,13 @@ import java.util.ArrayList;
 import gfx.Assets;
 import gfx.ImageLoader;
 import gfx.SpriteSheet;
+import tiles.GrassTile;
+import tiles.Tile;
 import utils.Utils;
 
+
 public class CommandStack {
+	private static final int STACKCNT = 5;
 	private ArrayList<Integer> stack = new ArrayList<Integer>();
 	private BufferedImage stackImg = new SpriteSheet(ImageLoader.loadImage("/textures/container.png")).crop(0,0,100,640);
 	private int start = 0;
@@ -27,11 +31,11 @@ public class CommandStack {
         }
     }
     
-    public void allocateCommand(int x, int y, int[][] tiles){
+    public void allocateCommand(int x, int y, Tile[][] tiles){
     	System.out.println(x/64+" "+y/64+" "+tiles[x/64][y/64]);
-    	if(tiles[x/64][y/64] == 0) {
+    	if(tiles[x/64][y/64].getClass() == GrassTile.class) {
     		subStart();
-    		tiles[x/64][y/64] = stack.remove(0);
+    		tiles[x/64][y/64] = Tile.tiles[stack.remove(0)];
     	}
     }
     
@@ -44,7 +48,7 @@ public class CommandStack {
     }
 
     public void addStart() {
-    	if(stack.size()-start > 4) {
+    	if(stack.size()-start > STACKCNT) {
     		start++;
     	}
     }
@@ -60,7 +64,7 @@ public class CommandStack {
 		if(start > 0) {
 			g.drawImage(Assets.dirt, 704, 0, null);
 		}
-		for(int i=start;i<start+4;i++) {
+		for(int i=start;i<start+STACKCNT;i++) {
 			if(i < stack.size()) {
 				if(stack.get(i) == 6) {
 					img = Assets.right;
@@ -73,13 +77,13 @@ public class CommandStack {
 				} else {
 					img = Assets.grass;
 				}
-				g.drawImage(img, 704, 100+(i-start)*100, null);
+				g.drawImage(img, 721, 100+(i-start)*100, null);
 			} else {
 				break;
 			}
 		}
-		if(stack.size()-start > 4) {
-			g.drawImage(Assets.dirt, 704, 576, null);
+		if(stack.size()-start > STACKCNT) {
+			g.drawImage(Assets.dirt, 721, 576, null);
 		}
     }
 }

@@ -1,11 +1,12 @@
 package worlds;
 
-import tiles.Tile;
+import tiles.*;
 import utils.Utils;
 
 import java.awt.*;
 
 import entities.gameB.CommandStack;
+import gfx.Assets;
 
 /**
  * Created by adrien on 12/05/16.
@@ -13,6 +14,7 @@ import entities.gameB.CommandStack;
  */
 public class WorldB extends World {
 
+    protected Tile[][] tiles2 = new Tile[width][height];
 
     private CommandStack commandStack = new CommandStack();
 
@@ -21,7 +23,7 @@ public class WorldB extends World {
     public WorldB(handler.Handler handler, String path){
 
         this.handler = handler;
-        super.loadWorld(path);
+        loadWorld(path);
     }
 
 	private int locationX = 1;
@@ -39,10 +41,6 @@ public class WorldB extends World {
 	    		action(locationX, locationY, locationX, ++locationY);
 	    	} else if(direction == 3) {
 	    		action(locationX, locationY, locationX, --locationY);
-	    	} else if(direction == -1) {
-	    		System.out.println("Game Over!");
-	    	} else if(direction == 4) {
-	    		System.out.println("Win");
 	    	}
 
 	    	try {
@@ -52,11 +50,11 @@ public class WorldB extends World {
 			}
     	} else {
     		if(handler.getMouseManager().isLeftPressed() && (handler.getMouseManager().getMouseX() < width*64) && (handler.getMouseManager().getMouseX() < height*64)) {
-    			commandStack.allocateCommand(handler.getMouseManager().getMouseX(), handler.getMouseManager().getMouseY(), tiles);
+    			commandStack.allocateCommand(handler.getMouseManager().getMouseX(), handler.getMouseManager().getMouseY(), tiles2);
     		}
-    		if(handler.getMouseManager().isLeftPressed() && (704 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 768) && (576 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 650))
+    		else if(handler.getMouseManager().isLeftPressed() && (704 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 768) && (576 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 650))
     			commandStack.addStart();
-    		if(handler.getMouseManager().isLeftPressed() && (704 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 768) && (0 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 64))
+    		else if(handler.getMouseManager().isLeftPressed() && (704 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 768) && (0 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 64))
     			commandStack.subStart();
     	}
     	try {
@@ -68,35 +66,35 @@ public class WorldB extends World {
     }
     
     private void action(int x1, int y1, int x2, int y2) {
-    	int tmp;
-    	if(tiles[x2][y2] == 0) {
-    		tmp = tiles[x1][y1];
-    		tiles[x1][y1] = tiles[x2][y2];
-    		tiles[x2][y2] = tmp;
-    	} else if(tiles[x2][y2] == 6) {
-    		tmp = tiles[x1][y1];
-    		tiles[x1][y1] = 0;
-    		tiles[x2][y2] = tmp;
+    	Tile tmp;
+    	if(tiles2[x2][y2].getClass() == GrassTile.class) {
+    		tmp = tiles2[x1][y1];
+    		tiles2[x1][y1] = tiles2[x2][y2];
+    		tiles2[x2][y2] = tmp;
+    	} else if(tiles2[x2][y2].getClass() == RightTile.class) {
+    		tmp = tiles2[x1][y1];
+    		tiles2[x1][y1] = Tile.tiles[0];
+    		tiles2[x2][y2] = tmp;
     		direction = 0;
-    	} else if(tiles[x2][y2] == 7) {
-    		tmp = tiles[x1][y1];
-    		tiles[x1][y1] = 0;
-    		tiles[x2][y2] = tmp;
+    	} else if(tiles2[x2][y2].getClass() == LeftTile.class) {
+    		tmp = tiles2[x1][y1];
+    		tiles2[x1][y1] = Tile.tiles[0];
+    		tiles2[x2][y2] = tmp;
     		direction = 1;
-    	} else if(tiles[x2][y2] == 8) {
-    		tmp = tiles[x1][y1];
-    		tiles[x1][y1] = 0;
-    		tiles[x2][y2] = tmp;
+    	} else if(tiles2[x2][y2].getClass() == DownTile.class) {
+    		tmp = tiles2[x1][y1];
+    		tiles2[x1][y1] = Tile.tiles[0];
+    		tiles2[x2][y2] = tmp;
     		direction = 2;
-    	} else if(tiles[x2][y2] == 9) {
-    		tmp = tiles[x1][y1];
-    		tiles[x1][y1] = 0;
-    		tiles[x2][y2] = tmp;
+    	} else if(tiles2[x2][y2].getClass() == UpTile.class) {
+    		tmp = tiles2[x1][y1];
+    		tiles2[x1][y1] = Tile.tiles[0];
+    		tiles2[x2][y2] = tmp;
     		direction = 3;
-    	} else if(tiles[x2][y2] == 2) {
+    	} else if(tiles2[x2][y2].getClass() == RockTile.class) {
     		direction = -1;
-    	} else if(tiles[x2][y2] == 5) {
-    		tiles[x1][y1] = 0;
+    	} else if(tiles2[x2][y2].getClass() == Goal.class) {
+    		tiles2[x1][y1] = GrassTile.dirtTile;
     		direction = 4;
     	}
     }
@@ -104,25 +102,29 @@ public class WorldB extends World {
     //displays each tile of the array
 	@Override
     public void render(Graphics g){
+    	if(direction == -1) {
+    		g.drawImage(Assets.gameOverBackground, 0, 0, null);
+    	} else {
+	        for (int y = 0; y < height; y++) {
+	            for (int x = 0; x < width; x++) {
+	            	tiles2[x][y].render(g,x*Tile.TILEWIDTH,y*Tile.TILEHEIGHT);
+	            }
+	        }
+	    	commandStack.render(g);
+    	}
+    }
+    
+    @Override
+    //method puts values into tiles array
+    protected void loadWorld(String path){
+        String file = Utils.loadFileAsString(path);
+        String[]tokens = file.split("\\s+");
+
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                getTile(x,y).render(g,x*Tile.TILEWIDTH,y*Tile.TILEHEIGHT);
+                tiles2[x][y] = Tile.tiles[Utils.parseInt(tokens[(x+y*width)])];
             }
         }
-    	commandStack.render(g);
-    }
-
-
-    //return type of choose tile
-    public Tile getTile(int x, int y){
-        if (x<0 || y<0 || x>= width || y>= height)
-            return Tile.grassTile;
-
-        Tile t = Tile.tiles[tiles[x][y]];
-        //if no tile, returns dirt tile
-        if (t == null)
-            return Tile.dirtTile;
-        return t;
     }
 
 

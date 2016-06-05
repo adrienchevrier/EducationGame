@@ -1,8 +1,6 @@
 package states;
 
 import gfx.Assets;
-import gfx.ImageLoader;
-import gfx.SpriteSheet;
 import handler.Handler;
 
 import javax.imageio.ImageIO;
@@ -16,14 +14,28 @@ import java.io.IOException;
  * EducationGame project class
  */
 public class EndState extends State {
-    State previousState;
+    private State previousState;
+    private BufferedImage image=null;
 
 
     public EndState(Handler handler,State previousState) {
         super(handler);
         this.previousState = previousState;
 
-    }
+            try {
+                if (previousState instanceof GameAState) {
+                    image = ImageIO.read(new File("res/gameEnds/EndOfGameA.png"));
+                }
+                if (previousState instanceof GameBState) {
+                    image = ImageIO.read(new File("res/gameEnds/EndOfGameB.png"));
+                }
+                if (previousState instanceof GameBState) {
+                    image = ImageIO.read(new File("res/gameEnds/EndOfGameB.png"));
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
     @Override
     public void tick() {
@@ -49,7 +61,8 @@ public class EndState extends State {
     @Override
     public void render(Graphics g) {
 
-        g.drawString("Continue?",500,200);
+        g.drawImage(image,150,150,null);
+        //g.drawString("Continue?",500,200);
         //First game
         g.drawImage(Assets.next, 400, 500, null);
         //2nd game
@@ -57,6 +70,7 @@ public class EndState extends State {
     }
 
     public void next(){
+        //Select next state depending on level finished
         if (previousState instanceof GameAState){
             CurrentState.setState(handler.getGame().gameState = new GameBState(handler));
         }

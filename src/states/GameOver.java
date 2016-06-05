@@ -1,8 +1,6 @@
 package states;
 
 import gfx.Assets;
-import gfx.ImageLoader;
-import gfx.SpriteSheet;
 import handler.Handler;
 
 import javax.imageio.ImageIO;
@@ -16,14 +14,15 @@ import java.io.IOException;
  * EducationGame project class
  */
 public class GameOver extends State {
-    State previousState;
-    BufferedImage img = null;
 
+    private State previousState;
+    private BufferedImage img = null;
 
+//CONSTRUCTOR
     public GameOver(Handler handler,State previousState) {
         super(handler);
         this.previousState = previousState;
-
+//Open gameOver image
         try {
             img = ImageIO.read(new File("res/textures/gameOver.jpg"));
         } catch (IOException e) {
@@ -33,21 +32,22 @@ public class GameOver extends State {
 
     @Override
     public void tick() {
+        //game is reset if the reset button is clicked
         if(handler.getMouseManager().isLeftPressed() && (186 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 586) && (400 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 600)){
             reset();
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
+
+        //go to menu is menu button is clicked
         if(handler.getMouseManager().isLeftPressed() && (772 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 1172) && (400 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 600)){
             CurrentState.setState(handler.getGame().gameState = new MenuState(handler));
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
@@ -77,6 +77,7 @@ public class GameOver extends State {
     }
 
     public void reset(){
+        //Reset according to previous game played
         if (previousState instanceof GameAState){
             CurrentState.setState(handler.getGame().gameState = new GameAState(handler, 1));
         }

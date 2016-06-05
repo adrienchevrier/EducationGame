@@ -1,6 +1,8 @@
 package states;
 
 
+import display.Display;
+
 import java.awt.*;
 
 /**

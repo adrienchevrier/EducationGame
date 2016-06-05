@@ -2,14 +2,12 @@ package game;
 
 import display.Display;
 import gfx.Assets;
-import gfx.Maze;
 import inputs.KeyManager;
 import inputs.MouseManager;
 import states.*;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.util.logging.Handler;
 
 /**
  * Created by adrien on 03/05/16.
@@ -64,7 +62,6 @@ public class Game implements Runnable{
         display.getCanvas().addMouseMotionListener(mousemanager);
         
         Assets.init();
-        //Maze.init();
 
         handler = new handler.Handler(this);
         
@@ -97,18 +94,6 @@ public class Game implements Runnable{
 
         //clear screen
         g.clearRect(0,0,width,height);
-
-        //g.drawImage(Assets.door,x,20,null);
-        //g.drawImage(Assets.genius,50,80,null);
-
-        //we draw here
-        //g.setColor(Color.green);
-        //g.fillRect(0,0,width,height);
-        //g.setColor(Color.blue);
-        //g.fillRect(10,30,10,10);
-
-        //draw image
-        //g.drawImage(testImage, 20,20,null);
 
         if (CurrentState.getState() !=null)
             CurrentState.getState().render(g);
