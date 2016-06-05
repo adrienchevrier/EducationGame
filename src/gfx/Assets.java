@@ -13,7 +13,7 @@ public class Assets {
     private static final int screenWidth = 1366,screenHeight = 700;
 
     public static BufferedImage door, entrance, grass, dirt, wall, genius,reset,menu,next;
-    public static BufferedImage goal, character, right, left, down, up;
+    public static BufferedImage goal, character, right, left, down, up, downn, upp, warp;
     public static BufferedImage gameA1, gameA2, gameB1, gameB2, gameC1, gameC2, menuBackground, gameOverBackground, winBackground, retry1, retry2, menu1, menu2;
     
 	public static BufferedImage player_front[], player_back[], player_right[], player_left[];
@@ -121,6 +121,13 @@ public class Assets {
         down = sheet.crop(width,height*4,width,height);
         up = sheet.crop(0,height*4,width,height);
         genius = sheet.crop(width*2,0,width,height);
+
+        sheet = new SpriteSheet(ImageLoader.loadImage("/textures/upp.png"));
+        upp = sheet.crop(0,0,width,height);
+        sheet = new SpriteSheet(ImageLoader.loadImage("/textures/downn.png"));
+        downn = sheet.crop(0,0,width,height);
+        sheet = new SpriteSheet(ImageLoader.loadImage("/textures/warp.png"));
+        warp = sheet.crop(0,0,width,height);
         
         //menustates and game over
         sheet = new SpriteSheet(ImageLoader.loadImage("/textures/OPEN.png"));

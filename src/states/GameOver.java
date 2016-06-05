@@ -82,7 +82,7 @@ public class GameOver extends State {
             CurrentState.setState(handler.getGame().gameState = new GameAState(handler, 1));
         }
         else if (previousState instanceof GameBState){
-            CurrentState.setState(handler.getGame().gameState = new GameBState(handler));
+            CurrentState.setState(handler.getGame().gameState = new GameBState(handler, 1));
         }
         else if (previousState instanceof GameCState){
             CurrentState.setState(handler.getGame().gameState = new GameCState(handler));

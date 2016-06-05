@@ -18,11 +18,19 @@ public class CommandStack {
 	private BufferedImage stackImg = new SpriteSheet(ImageLoader.loadImage("/textures/container.png")).crop(0,0,100,640);
 	private int start = 0;
 	
-	public CommandStack() {
-		loadCommand("res/myWorlds/command1");
+	public CommandStack(int level) {
+		loadCommand(level);
 	}
     
-    public void loadCommand(String path){
+    public void loadCommand(int level){
+    	String path = "";
+    	if(level == 1) {
+    		path = "res/myWorlds/command1";
+    	} else if(level == 2) {
+    		path = "res/myWorlds/command2";
+    	} else if(level == 3) {
+    		path = "res/myWorlds/command3";
+    	}
         String file = Utils.loadFileAsString(path);
         String[]tokens = file.split("\\s+");
 
@@ -32,7 +40,6 @@ public class CommandStack {
     }
     
     public void allocateCommand(int x, int y, Tile[][] tiles){
-    	System.out.println(x/64+" "+y/64+" "+tiles[x/64][y/64]);
     	if(tiles[x/64][y/64].getClass() == GrassTile.class) {
     		subStart();
     		tiles[x/64][y/64] = Tile.tiles[stack.remove(0)];
@@ -62,7 +69,7 @@ public class CommandStack {
     	BufferedImage img;
 		g.drawImage(stackImg, 704, 0, 100, 640, null);
 		if(start > 0) {
-			g.drawImage(Assets.dirt, 704, 0, null);
+			g.drawImage(Assets.upp, 721, 0, null);
 		}
 		for(int i=start;i<start+STACKCNT;i++) {
 			if(i < stack.size()) {
@@ -74,6 +81,8 @@ public class CommandStack {
 					img = Assets.down;
 				} else if(stack.get(i) == 9) {
 					img = Assets.up;
+				} else if(stack.get(i) == 10) {
+					img = Assets.warp;
 				} else {
 					img = Assets.grass;
 				}
@@ -83,7 +92,7 @@ public class CommandStack {
 			}
 		}
 		if(stack.size()-start > STACKCNT) {
-			g.drawImage(Assets.dirt, 721, 576, null);
+			g.drawImage(Assets.downn, 721, 576, null);
 		}
     }
 }

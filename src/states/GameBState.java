@@ -13,11 +13,11 @@ public class GameBState extends State {
  
 
     //CONSTRUCTOR
-    public GameBState(handler.Handler handler){
+    public GameBState(handler.Handler handler, int level){
         super(handler);
         
         //path to world information
-        worldB = new WorldB(handler,"res/myWorlds/worldB.txt");
+        worldB = new WorldB(handler,level);
         handler.setWorld(worldB);
        
         

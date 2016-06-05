@@ -32,7 +32,7 @@ public class MenuState extends State{
 
 		//Game B launched if B button is pressed
 		if(handler.getMouseManager().isLeftPressed() && (480 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 880) && (400 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 600)){
-    		CurrentState.setState(handler.getGame().gameState = new GameBState(handler));
+    		CurrentState.setState(handler.getGame().gameState = new GameBState(handler,1));
     		try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {

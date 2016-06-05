@@ -72,7 +72,7 @@ public class EndState extends State {
     public void next(){
         //Select next state depending on level finished
         if (previousState instanceof GameAState){
-            CurrentState.setState(handler.getGame().gameState = new GameBState(handler));
+            CurrentState.setState(handler.getGame().gameState = new GameBState(handler,1));
         }
         else if (previousState instanceof GameBState){
             CurrentState.setState(handler.getGame().gameState = new GameCState(handler));

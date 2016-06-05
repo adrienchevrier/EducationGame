@@ -22,6 +22,7 @@ public abstract class Tile {
     public static Tile leftTile = new LeftTile(7);
     public static Tile downTile = new DownTile(8);
     public static Tile upTile = new UpTile(9);
+    public static Tile warpTile = new Warp(10);
 
     //CLASS
 

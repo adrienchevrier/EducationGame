@@ -1,12 +1,15 @@
 package worlds;
 
 import tiles.*;
+import tiles.Character;
 import utils.Utils;
 
 import java.awt.*;
 
 import entities.gameB.CommandStack;
 import gfx.Assets;
+import states.CurrentState;
+import states.*;
 
 /**
  * Created by adrien on 12/05/16.
@@ -14,43 +17,42 @@ import gfx.Assets;
  */
 public class WorldB extends World {
 
-    protected Tile[][] tiles2 = new Tile[width][height];
+    protected Tile[][] tiles = new Tile[width][height];
 
-    private CommandStack commandStack = new CommandStack();
+    private CommandStack commandStack;
+	public static int locationX;
+	public static int locationY;
+	public static int direction = 0;
 
 
     //CONSTRUCTOR
-    public WorldB(handler.Handler handler, String path){
-
+    public WorldB(handler.Handler handler, int level){
+    	commandStack = new CommandStack(level);
+    	direction = 0;
         this.handler = handler;
-        loadWorld(path);
+        if(level == 1) {
+            loadWorld("res/myWorlds/worldB1.txt");	
+        } else if(level == 2) {
+            loadWorld("res/myWorlds/worldB2.txt");	
+        } else if(level == 3) {
+            loadWorld("res/myWorlds/worldB3.txt");	
+        }
     }
-
-	private int locationX = 1;
-	private int locationY = 1;
-	private int direction = 0;
 
 	@Override
     public void tick(){
     	if(commandStack.getCommandStack().isEmpty()) {
-	    	if(direction == 0) {
-	    		action(locationX, locationY, ++locationX, locationY);
-	    	} else if(direction == 1) {
-	    		action(locationX, locationY, --locationX, locationY);
-	    	} else if(direction == 2) {
-	    		action(locationX, locationY, locationX, ++locationY);
-	    	} else if(direction == 3) {
-	    		action(locationX, locationY, locationX, --locationY);
-	    	}
-
-	    	try {
-				Thread.sleep(300);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+    		try {
+    			switch(Character.swap(tiles, handler)) {
+    			case -1: CurrentState.setState(handler.getGame().gameState = new GameOver(handler, new GameBState(handler, 1))); break;
+    			case 1: CurrentState.setState(handler.getGame().gameState = new GameBState(handler, 2)); break;
+    			}
+    		} catch(ClassCastException e) {
+    			System.out.println("Not character");
+    		}
     	} else {
     		if(handler.getMouseManager().isLeftPressed() && (handler.getMouseManager().getMouseX() < width*64) && (handler.getMouseManager().getMouseX() < height*64)) {
-    			commandStack.allocateCommand(handler.getMouseManager().getMouseX(), handler.getMouseManager().getMouseY(), tiles2);
+    			commandStack.allocateCommand(handler.getMouseManager().getMouseX(), handler.getMouseManager().getMouseY(), tiles);
     		}
     		else if(handler.getMouseManager().isLeftPressed() && (704 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 768) && (576 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 650))
     			commandStack.addStart();
@@ -64,54 +66,16 @@ public class WorldB extends World {
 		}
 
     }
-    
-    private void action(int x1, int y1, int x2, int y2) {
-    	Tile tmp;
-    	if(tiles2[x2][y2].getClass() == GrassTile.class) {
-    		tmp = tiles2[x1][y1];
-    		tiles2[x1][y1] = tiles2[x2][y2];
-    		tiles2[x2][y2] = tmp;
-    	} else if(tiles2[x2][y2].getClass() == RightTile.class) {
-    		tmp = tiles2[x1][y1];
-    		tiles2[x1][y1] = Tile.tiles[0];
-    		tiles2[x2][y2] = tmp;
-    		direction = 0;
-    	} else if(tiles2[x2][y2].getClass() == LeftTile.class) {
-    		tmp = tiles2[x1][y1];
-    		tiles2[x1][y1] = Tile.tiles[0];
-    		tiles2[x2][y2] = tmp;
-    		direction = 1;
-    	} else if(tiles2[x2][y2].getClass() == DownTile.class) {
-    		tmp = tiles2[x1][y1];
-    		tiles2[x1][y1] = Tile.tiles[0];
-    		tiles2[x2][y2] = tmp;
-    		direction = 2;
-    	} else if(tiles2[x2][y2].getClass() == UpTile.class) {
-    		tmp = tiles2[x1][y1];
-    		tiles2[x1][y1] = Tile.tiles[0];
-    		tiles2[x2][y2] = tmp;
-    		direction = 3;
-    	} else if(tiles2[x2][y2].getClass() == RockTile.class) {
-    		direction = -1;
-    	} else if(tiles2[x2][y2].getClass() == Goal.class) {
-    		tiles2[x1][y1] = GrassTile.dirtTile;
-    		direction = 4;
-    	}
-    }
 
     //displays each tile of the array
 	@Override
     public void render(Graphics g){
-    	if(direction == -1) {
-    		g.drawImage(Assets.gameOverBackground, 0, 0, null);
-    	} else {
-	        for (int y = 0; y < height; y++) {
-	            for (int x = 0; x < width; x++) {
-	            	tiles2[x][y].render(g,x*Tile.TILEWIDTH,y*Tile.TILEHEIGHT);
-	            }
-	        }
-	    	commandStack.render(g);
-    	}
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+            	tiles[x][y].render(g,x*Tile.TILEWIDTH,y*Tile.TILEHEIGHT);
+            }
+        }
+    	commandStack.render(g);
     }
     
     @Override
@@ -122,7 +86,11 @@ public class WorldB extends World {
 
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                tiles2[x][y] = Tile.tiles[Utils.parseInt(tokens[(x+y*width)])];
+                tiles[x][y] = Tile.tiles[Utils.parseInt(tokens[(x+y*width)])];
+                if(tiles[x][y].getClass() == Character.class) {
+                	locationX = Integer.valueOf(x);
+                	locationY = Integer.valueOf(y);
+                }
             }
         }
     }
