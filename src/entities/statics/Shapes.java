@@ -118,5 +118,9 @@ public class Shapes extends JPanel {
 			e.printStackTrace();
 		}
 	}
+		
+		public void draw(){
+			this.repaint();
+		}
 
 }
