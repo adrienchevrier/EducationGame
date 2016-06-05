@@ -24,7 +24,7 @@ public class GameOver extends State {
         this.previousState = previousState;
 //Open gameOver image
         try {
-            img = ImageIO.read(new File("res/textures/gameOver.jpg"));
+            img = ImageIO.read(new File("res/textures/GAMEOVER.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
