@@ -27,6 +27,7 @@ public class WorldB extends World {
 
     //CONSTRUCTOR
     public WorldB(handler.Handler handler, int level){
+    	level = 2;
     	commandStack = new CommandStack(level);
     	direction = 0;
         this.handler = handler;
