@@ -8,7 +8,6 @@ import java.awt.*;
 
 import entities.gameB.CommandStack;
 import gfx.Assets;
-import states.CurrentState;
 import states.*;
 
 /**
@@ -23,30 +22,34 @@ public class WorldB extends World {
 	public static int locationX;
 	public static int locationY;
 	public static int direction = 0;
+	private int level;
 
 
     //CONSTRUCTOR
     public WorldB(handler.Handler handler, int level){
-    	level = 2;
+    	this.level = level;
     	commandStack = new CommandStack(level);
     	direction = 0;
         this.handler = handler;
-        if(level == 1) {
-            loadWorld("res/myWorlds/worldB1.txt");	
-        } else if(level == 2) {
-            loadWorld("res/myWorlds/worldB2.txt");	
-        } else if(level == 3) {
-            loadWorld("res/myWorlds/worldB3.txt");	
+        if(this.level == 1) {
+            loadWorld("res/myWorlds/worldB1.txt");
+        } else if(this.level == 2) {
+            loadWorld("res/myWorlds/worldB2.txt");
+        } else if(this.level == 3) {
+            loadWorld("res/myWorlds/worldB3.txt");
+        } else {
+            loadWorld("res/myWorlds/worldB1.txt");
         }
     }
 
 	@Override
     public void tick(){
+		if(level == 4) CurrentState.setState(handler.getGame().gameState = new GameCState(handler));
     	if(commandStack.getCommandStack().isEmpty()) {
     		try {
     			switch(Character.swap(tiles, handler)) {
     			case -1: CurrentState.setState(handler.getGame().gameState = new GameOver(handler, new GameBState(handler, 1))); break;
-    			case 1: CurrentState.setState(handler.getGame().gameState = new GameBState(handler, 2)); break;
+    			case 1: CurrentState.setState(handler.getGame().gameState = new GameBState(handler, ++level)); break;
     			}
     		} catch(ClassCastException e) {
     			System.out.println("Not character");
