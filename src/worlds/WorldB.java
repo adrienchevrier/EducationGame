@@ -44,7 +44,7 @@ public class WorldB extends World {
 
 	@Override
     public void tick(){
-		if(level == 4) CurrentState.setState(handler.getGame().gameState = new GameCState(handler));
+		if(level == 4) CurrentState.setState(handler.getGame().gameState = new EndState(handler, new GameBState(handler, 1)));
     	if(commandStack.getCommandStack().isEmpty()) {
     		try {
     			switch(Character.swap(tiles, handler)) {
