@@ -7,6 +7,7 @@ import game.GameCThread;
 
 public class WorldC extends World {
 	//Instance variables
+	private Shapes s = new Shapes();
 	//Constructor
 	public WorldC(handler.Handler handler){
         this.handler = handler;
@@ -30,10 +31,8 @@ public class WorldC extends World {
 
 	@Override
 	public void render(Graphics g) {
-
+		s.draw();
+		s.paintComponent(g);
 		
 	}
-
-	
-	
 }

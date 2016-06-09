@@ -11,14 +11,14 @@ public class GameCState extends State{
 	//Instance variables
 	private WorldC worldC;
 
-    private GameCThread gameCThread;
+    //private GameCThread gameCThread;
 	//Constructor
 	public GameCState(Handler handler) {
 		super(handler);
 		worldC = new WorldC(handler);
 
-        gameCThread= new GameCThread();
-        gameCThread.start();
+        //gameCThread= new GameCThread();
+        //gameCThread.start();
 	}
 
 	//Override methods
@@ -29,7 +29,7 @@ public class GameCState extends State{
 
 	@Override
 	public void render(Graphics g) {
-		//worldC.render(g);
+		worldC.render(g);
 	}
 
 }

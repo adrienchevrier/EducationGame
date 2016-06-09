@@ -3,12 +3,17 @@ package worlds;
 import tiles.Tile;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 import entities.EntityManager;
 import entities.dynamics.Player;
 import entities.statics.Ally;
 import entities.statics.Enemy;
 import entities.statics.Gate;
+
+import javax.imageio.ImageIO;
 
 /**
  * Created by adrien on 12/05/16.
@@ -19,6 +24,8 @@ public class WorldA extends World {
 
     
     private EntityManager entityManager;
+
+	private BufferedImage instruction=null;
 
 
 
@@ -62,9 +69,13 @@ public class WorldA extends World {
        		entityManager.addEntity(new Gate(handler, 500, 100, 4, 6));
         	
         }
-        
-        
-        
+
+
+		try {
+			instruction = ImageIO.read(new File("res/textures/InstructionsA.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
         
         loadWorld(path);
         entityManager.getPlayer().setX(spawnX);
@@ -89,6 +100,8 @@ public class WorldA extends World {
         
         //Entities
         entityManager.render(g);
+		//Instructions
+		g.drawImage(instruction,710,200,null);
 
     }
     

@@ -5,7 +5,11 @@ package states;
 import tiles.Tile;
 import worlds.WorldA;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Created by adrien on 10/05/16.
@@ -29,7 +33,8 @@ public class GameAState extends State {
         }else if(level==3){
         	worldA = new WorldA(handler,"res/myWorlds/world3.txt", level);
         }
-        
+
+
         handler.setWorld(worldA);
        
         
@@ -46,6 +51,7 @@ public class GameAState extends State {
     @Override
     public void render(Graphics g) {
         worldA.render(g);
+
         
         
         Tile.tiles[3].render(g,0,0);
