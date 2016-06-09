@@ -24,13 +24,13 @@ public class EndState extends State {
 
             try {
                 if (previousState instanceof GameAState) {
-                    image = ImageIO.read(new File("res/gameEnds/EndOfGameA.png"));
+                    image = ImageIO.read(new File("res/textures/WIN.png"));
                 }
                 if (previousState instanceof GameBState) {
-                    image = ImageIO.read(new File("res/gameEnds/EndOfGameB.png"));
+                    image = ImageIO.read(new File("res/textures/WIN.png"));
                 }
                 if (previousState instanceof GameBState) {
-                    image = ImageIO.read(new File("res/gameEnds/EndOfGameB.png"));
+                    image = ImageIO.read(new File("res/textures/WIN.png"));
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -39,7 +39,7 @@ public class EndState extends State {
 
     @Override
     public void tick() {
-        if(handler.getMouseManager().isLeftPressed() && (400 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 464) && (500 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 564)){
+        if(handler.getMouseManager().isLeftPressed() && (186 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 586) && (400 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 600)){
             next();
             try {
                 Thread.sleep(100);
@@ -47,7 +47,7 @@ public class EndState extends State {
                 e.printStackTrace();
             }
         }
-        if(handler.getMouseManager().isLeftPressed() && (600 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 664) && (500 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 564)){
+        if(handler.getMouseManager().isLeftPressed() && (772 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 1172) && (400 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 600)){
             CurrentState.setState(handler.getGame().gameState = new MenuState(handler));
             try {
                 Thread.sleep(100);
@@ -61,12 +61,25 @@ public class EndState extends State {
     @Override
     public void render(Graphics g) {
 
-        g.drawImage(image,150,150,null);
+        g.drawImage(image,0,0,null);
         //g.drawString("Continue?",500,200);
         //First game
-        g.drawImage(Assets.next, 400, 500, null);
+        g.drawImage(Assets.next1, 186, 400, null);
+        if((186 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 586) && (400 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 600)){
+        	g.drawImage(Assets.next2, 186,400, null);
+        }
+        else{
+        	g.drawImage(Assets.next1, 186, 400, null);
+        }
+
         //2nd game
-        g.drawImage(Assets.menu, 600, 500, null);
+        g.drawImage(Assets.menu1, 772, 400, null);
+        if((772 < handler.getMouseManager().getMouseX() && handler.getMouseManager().getMouseX() < 1172) && (400 < handler.getMouseManager().getMouseY() && handler.getMouseManager().getMouseY() < 600)){
+        	g.drawImage(Assets.menu2, 772, 400, null);
+        }
+        else{
+        	g.drawImage(Assets.menu1, 772, 400, null);
+        }
     }
 
     public void next(){

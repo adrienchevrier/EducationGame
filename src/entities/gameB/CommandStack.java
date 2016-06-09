@@ -30,6 +30,8 @@ public class CommandStack {
     		path = "res/myWorlds/command2";
     	} else if(level == 3) {
     		path = "res/myWorlds/command3";
+    	} else {
+    		path = "res/myWorlds/command1";
     	}
         String file = Utils.loadFileAsString(path);
         String[]tokens = file.split("\\s+");
