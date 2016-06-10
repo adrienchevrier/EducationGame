@@ -24,12 +24,12 @@ public class EndState extends State {
 
             try {
                 if (previousState instanceof GameAState) {
-                    image = ImageIO.read(new File("res/textures/WIN.png"));
+                    image = ImageIO.read(new File("res/textures/WIN_A.png"));
                 }
                 if (previousState instanceof GameBState) {
-                    image = ImageIO.read(new File("res/textures/WIN.png"));
+                    image = ImageIO.read(new File("res/textures/WIN_B.png"));
                 }
-                if (previousState instanceof GameBState) {
+                if (previousState instanceof GameCState) {
                     image = ImageIO.read(new File("res/textures/WIN.png"));
                 }
             } catch (IOException e) {
@@ -88,7 +88,7 @@ public class EndState extends State {
             CurrentState.setState(handler.getGame().gameState = new GameBState(handler,1));
         }
         else if (previousState instanceof GameBState){
-            CurrentState.setState(handler.getGame().gameState = new GameCState(handler));
+            CurrentState.setState(handler.getGame().gameState = new MenuState(handler));
         }
         else if (previousState instanceof GameCState){
 

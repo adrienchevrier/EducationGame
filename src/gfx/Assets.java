@@ -14,7 +14,7 @@ public class Assets {
 
     public static BufferedImage door, entrance, grass, dirt, wall, genius,reset,menu,next;
     public static BufferedImage goal, character, right, left, down, up, downn, upp, warp;
-    public static BufferedImage gameA1, gameA2, gameB1, gameB2, gameC1, gameC2, menuBackground, gameOverBackground, winBackground, retry1, retry2, menu1, menu2, next1, next2;
+    public static BufferedImage gameA1, gameA2, gameB1, gameB2, gameC1, gameC2, menuBackground, gameOverBackground, winBackground1, winBackground2, retry1, retry2, menu1, menu2, next1, next2;
     
 	public static BufferedImage player_front[], player_back[], player_right[], player_left[];
 	public static BufferedImage ally_front[], ally_back[], ally_right[], ally_left[];
@@ -136,8 +136,10 @@ public class Assets {
         sheet = new SpriteSheet(ImageLoader.loadImage("/textures/GAMEOVER.png"));
         gameOverBackground=sheet.crop(0,0,screenWidth,screenHeight);
         
-        sheet = new SpriteSheet(ImageLoader.loadImage("/textures/WIN.png"));
-        winBackground=sheet.crop(0,0,screenWidth,screenHeight);
+        sheet = new SpriteSheet(ImageLoader.loadImage("/textures/WIN_A.png"));
+        winBackground1=sheet.crop(0,0,screenWidth,screenHeight);
+        sheet = new SpriteSheet(ImageLoader.loadImage("/textures/WIN_B.png"));
+        winBackground2=sheet.crop(0,0,screenWidth,screenHeight);
         
         sheet = new SpriteSheet(ImageLoader.loadImage("/textures/GameA_bright.jpg"));
         gameA1=sheet.crop(0,0,400,200);
